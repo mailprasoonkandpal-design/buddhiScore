@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Buddhi Score</title>
 <meta name="description" content="A 10-minute thinking test for ages 6 to 60+. Get an estimated score, a five-skill breakdown and a brain map. Full report ₹49.">
-<meta property="og:title" content="Buddhi Score: how sharp is your mind today?">
+<meta property="og:title" content="How good is your brain? The 10-minute Buddhi Score test">
 <meta property="og:description" content="A 10-minute thinking test for all ages, with a graphical report.">
 <meta property="og:url" content="https://buddhiscore.in/">
 <meta name="theme-color" content="#FFB020">
@@ -49,6 +49,10 @@ h3{font-family:var(--display);font-weight:700;font-size:17px;margin:0}
 p{margin:0}
 .lede{font-size:18px;color:var(--muted);max-width:56ch}
 .hero{display:grid;grid-template-columns:1.25fr 1fr;gap:16px;align-items:center}
+.kick{align-self:flex-start;background:var(--ink);color:var(--bg);font-weight:700;font-size:13px;letter-spacing:.06em;text-transform:uppercase;padding:5px 12px;border-radius:99px}
+.ctarow{display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+.price{display:flex;flex-direction:column;font-size:15px;color:var(--muted);line-height:1.25;border-left:3px solid var(--accent);padding-left:12px}
+.price b{color:var(--ink);font-size:16px}.price strong{color:var(--ink);font-family:var(--display);font-size:22px}
 .hero .txt{display:flex;flex-direction:column;gap:14px}
 .hero svg{width:100%;height:auto;display:block;max-width:300px;margin:0 auto}
 .card{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:20px;display:flex;flex-direction:column;gap:16px}
@@ -85,6 +89,9 @@ input[type=text]:focus-visible,button:focus-visible{outline:3px solid var(--teal
 .ages button[aria-pressed=true]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
 .btn{appearance:none;border:0;border-radius:14px;padding:15px 20px;font:700 17px var(--body);cursor:pointer;background:var(--accent);color:var(--accent-ink);box-shadow:0 3px 0 rgba(0,0,0,.2)}
 .btn:active{transform:translateY(2px);box-shadow:0 1px 0 rgba(0,0,0,.2)}
+.btn.big{display:flex;flex-direction:column;align-items:flex-start;gap:2px;text-align:left;padding:16px 22px;width:100%}
+.btn.big b{font-family:var(--display);font-size:22px;line-height:1.15}
+.btn.big span{font-size:14.5px;font-weight:600;opacity:.85}
 .btn:disabled{opacity:.45;cursor:not-allowed}
 .btn.ghost{background:transparent;color:var(--ink);border:1.5px solid var(--line);box-shadow:none}
 .btn.dark{background:var(--ink);color:var(--bg)}
@@ -224,7 +231,7 @@ a.btn{text-decoration:none;display:inline-block;text-align:center}
 .bar em{font-style:normal;text-align:right;font-variant-numeric:tabular-nums;color:var(--muted)}
 .lock{border:1.5px dashed var(--accent)}
 .lock .blur{filter:blur(5px);opacity:.55;pointer-events:none;user-select:none;display:flex;flex-direction:column;gap:10px}
-.lock .cta{display:flex;flex-direction:column;gap:10px;align-items:flex-start}
+.lock .cta{display:flex;flex-direction:column;gap:10px;align-items:stretch}
 .rev{display:flex;flex-direction:column;gap:12px}
 .rev > div{border-top:1px solid var(--line);padding-top:12px;display:flex;flex-direction:column;gap:4px;font-size:15px}
 .rev .ok{color:var(--good);font-weight:700}.rev .no{color:var(--bad);font-weight:700}
@@ -250,6 +257,8 @@ a.btn{text-decoration:none;display:inline-block;text-align:center}
   .skill .ico{animation:pop .5s cubic-bezier(.2,1.4,.4,1) both}
   .skill:nth-child(2) .ico{animation-delay:.07s}.skill:nth-child(3) .ico{animation-delay:.14s}.skill:nth-child(4) .ico{animation-delay:.21s}.skill:nth-child(5) .ico{animation-delay:.28s}
   .skill .ico{transition:outline-color .3s}
+  #heroGo{animation:nudge 2.6s ease-in-out 1.2s infinite}
+  @keyframes nudge{0%,100%{transform:none;box-shadow:0 3px 0 rgba(0,0,0,.2)}8%{transform:translateY(-3px) scale(1.04);box-shadow:0 8px 0 rgba(0,0,0,.14)}16%{transform:none;box-shadow:0 3px 0 rgba(0,0,0,.2)}}
   .enter{animation:slide .35s cubic-bezier(.2,.8,.2,1) both}
   .opts button{animation:pop .35s cubic-bezier(.2,1.3,.4,1) both;transition:transform .12s,background .15s,border-color .15s}
   .opts button:nth-child(2){animation-delay:.05s}.opts button:nth-child(3){animation-delay:.1s}.opts button:nth-child(4){animation-delay:.15s}
@@ -297,9 +306,13 @@ a.btn{text-decoration:none;display:inline-block;text-align:center}
     </div>
     <div class="hero">
       <div class="txt">
-        <h1>How sharp is your mind today?</h1>
-        <p class="lede">A 10-minute thinking test for ages 6 to 60+. Fresh questions every time, one score, and a report worth showing someone.</p>
-        <div><button type="button" class="btn" id="heroGo">Take the test</button></div>
+        <span class="kick">The 10-minute brain test</span>
+        <h1>How good is your brain?</h1>
+        <p class="lede">Find out in 10 minutes. Five thinking skills, fresh questions every time, and a report worth showing someone. For ages 6 to 60+.</p>
+        <div class="ctarow">
+          <button type="button" class="btn" id="heroGo">Take the test</button>
+          <span class="price"><b>Free score</b>Full report only <strong>₹49</strong></span>
+        </div>
       </div>
       <svg viewBox="0 0 320 200" aria-hidden="true">
         <g class="ray" stroke="var(--accent)" stroke-width="5" stroke-linecap="round">
@@ -417,7 +430,7 @@ a.btn{text-decoration:none;display:inline-block;text-align:center}
       <p class="note">Each square is one question, coloured by its skill. A filled square means you got it right.</p>
     </div>
     <div class="card lock" id="lockCard">
-      <h2>Your full report is ready</h2>
+      <h2>Ready to unlock your brain's full potential?</h2>
       <p>The free result tells you the score. The full report tells you why, and what to do about it.</p>
       <ul class="inside">
         <li><b>Your thinking profile</b>A written summary of how your mind works and your next score target</li>
@@ -427,7 +440,7 @@ a.btn{text-decoration:none;display:inline-block;text-align:center}
         <li><b>Careers and subjects that fit</b>Fields that use your strongest skills, and a parent guide for children under 13</li>
         <li><b>Every answer explained</b>Your answer, the right answer and the reasoning</li>
       </ul>
-      <div class="cta"><button class="btn" id="unlock">Unlock full report for ₹49</button><span class="note">One-time payment by UPI, card or netbanking through Razorpay. See our <a href="/refund.html">refund policy</a>.</span></div>
+      <div class="cta"><button class="btn big" id="unlock"><b>Unlock your brain's full potential</b><span>Full report + 4-week practice plan · ₹49</span></button><span class="note">One-time payment by UPI, card or netbanking through Razorpay. See our <a href="/refund.html">refund policy</a>.</span></div>
     </div>
     <div class="full" id="fullCard" hidden></div>
     <div class="card" id="shareCard">

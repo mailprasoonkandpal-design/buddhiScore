@@ -1,7 +1,10 @@
-// Buddhi Score server code for Cloudflare Pages.
-// Handles the two payment calls and serves every other request from the site's files.
+// Buddhi Score server code for Cloudflare Workers.
+// Handles the payment calls and the Whimsi chat, and serves every other request from the site's files.
 // Needs two secrets set in the Cloudflare dashboard: RAZORPAY_KEY_ID and RAZORPAY_KEY_SECRET.
+// Whimsi also needs the secret ANTHROPIC_API_KEY and the WHIMSI KV namespace (see wrangler.jsonc).
 // Optional: PRICE_PAISE (defaults to 4900, which is ₹49).
+
+import { whimsiReply } from "./whimsi.js";
 
 const json = (body, status = 200) =>
   new Response(JSON.stringify(body), { status, headers: { "Content-Type": "application/json", "Cache-Control": "no-store" } });
@@ -34,28 +37,38 @@ async function createOrder(env) {
   return json({ ok: true, order_id: j.id, amount: j.amount, key_id: env.RAZORPAY_KEY_ID });
 }
 
-async function verify(request, env) {
-  const b = await request.json().catch(() => ({}));
+// Returns null when the order is paid, or [error message, HTTP status] when it is not.
+async function unpaid(b, env) {
   const orderId = b.razorpay_order_id, payId = b.razorpay_payment_id, sig = b.razorpay_signature;
-  if (!/^order_[A-Za-z0-9]{6,40}$/.test(orderId || "")) return json({ ok: false, error: "Invalid order." }, 400);
+  if (!/^order_[A-Za-z0-9]{6,40}$/.test(orderId || "")) return ["Invalid order.", 400];
 
   // Normal path: Razorpay's signature proves this payment belongs to this order.
   if (payId && sig) {
-    if (!/^pay_[A-Za-z0-9]{6,40}$/.test(payId)) return json({ ok: false, error: "Invalid payment." }, 400);
+    if (!/^pay_[A-Za-z0-9]{6,40}$/.test(payId)) return ["Invalid payment.", 400];
     const expected = await hmacHex(env.RAZORPAY_KEY_SECRET, orderId + "|" + payId);
-    if (sameString(expected, String(sig))) return json({ ok: true });
-    return json({ ok: false, error: "Payment could not be verified." }, 400);
+    return sameString(expected, String(sig)) ? null : ["Payment could not be verified.", 400];
   }
 
   // Recovery path: the page was closed or reloaded mid-payment, so ask Razorpay whether the order was paid.
   const r = await fetch("https://api.razorpay.com/v1/orders/" + orderId, { headers: { Authorization: auth(env) } });
   const j = await r.json().catch(() => ({}));
-  if (r.ok && j.status === "paid" && j.amount_paid >= j.amount) return json({ ok: true });
-  return json({ ok: false, error: "This order has not been paid." }, 402);
+  return r.ok && j.status === "paid" && j.amount_paid >= j.amount ? null : ["This order has not been paid.", 402];
+}
+
+async function verify(request, env) {
+  const bad = await unpaid(await request.json().catch(() => ({})), env);
+  return bad ? json({ ok: false, error: bad[0] }, bad[1]) : json({ ok: true });
+}
+
+async function whimsi(request, env, ctx) {
+  if (!env.ANTHROPIC_API_KEY || !env.WHIMSI) return json({ ok: false, error: "Whimsi is not set up yet." }, 500);
+  const b = await request.json().catch(() => ({}));
+  if (!b.pay || (await unpaid(b.pay, env))) return json({ ok: false, error: "Whimsi comes with the full report. Unlock it to chat." }, 402);
+  return whimsiReply(b, env, ctx);
 }
 
 export default {
-  async fetch(request, env) {
+  async fetch(request, env, ctx) {
     const url = new URL(request.url);
     if (url.pathname.startsWith("/api/")) {
       if (request.method !== "POST") return json({ ok: false, error: "Method not allowed." }, 405);
@@ -63,6 +76,7 @@ export default {
       try {
         if (url.pathname === "/api/create-order") return await createOrder(env);
         if (url.pathname === "/api/verify") return await verify(request, env);
+        if (url.pathname === "/api/whimsi") return await whimsi(request, env, ctx);
       } catch (e) {
         return json({ ok: false, error: "Something went wrong. Please try again." }, 500);
       }

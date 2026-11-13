@@ -9,6 +9,12 @@
 <meta property="og:description" content="A 10-minute thinking test for all ages, with a graphical report.">
 <meta property="og:url" content="https://buddhiscore.in/">
 <meta name="theme-color" content="#FFB020">
+<link rel="icon" href="/favicon.ico?v=2" sizes="48x48">
+<link rel="icon" href="/favicon.svg?v=2" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png?v=2">
+<meta property="og:image" content="https://buddhiscore.in/og.png">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -39,9 +45,12 @@ html,body{margin:0}
 body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.5;-webkit-font-smoothing:antialiased;overflow-x:hidden}
 .wrap{max-width:720px;margin:0 auto;padding:20px 18px 56px;display:flex;flex-direction:column;gap:22px}
 header.bar{display:flex;justify-content:space-between;align-items:center;gap:12px}
-.brand{font-family:var(--display);font-weight:800;font-size:20px;letter-spacing:-.02em}
+.brand{display:flex;align-items:center;gap:9px;font-family:var(--display);font-weight:800;font-size:20px;letter-spacing:-.02em}
 .brand i{font-style:normal;background:var(--accent);color:var(--accent-ink);padding:1px 7px;border-radius:6px;margin-left:4px}
-.mute{border:1.5px solid var(--line);background:var(--surface);color:var(--ink);border-radius:99px;padding:6px 12px;font:600 13px var(--body);cursor:pointer}
+.mute,.back{border:1.5px solid var(--line);background:var(--surface);color:var(--ink);border-radius:99px;padding:6px 12px;font:600 13px var(--body);cursor:pointer}
+.hl{display:flex;align-items:center;gap:10px;min-width:0}
+.back{display:inline-flex;align-items:center;gap:3px;padding-left:8px;flex:none}
+@media (max-width:420px){.back:not([hidden])+.brand span{display:none}}
 .mute[aria-pressed=true]{color:var(--muted);text-decoration:line-through}
 h1{font-family:var(--display);font-weight:800;font-size:clamp(34px,8vw,54px);line-height:1.02;letter-spacing:-.035em;margin:0;text-wrap:balance}
 h2{font-family:var(--display);font-weight:700;font-size:22px;letter-spacing:-.02em;margin:0;text-wrap:balance}
@@ -53,6 +62,7 @@ p{margin:0}
 .ctarow{display:flex;align-items:center;gap:16px;flex-wrap:wrap}
 .price{display:flex;flex-direction:column;font-size:15px;color:var(--muted);line-height:1.25;border-left:3px solid var(--accent);padding-left:12px}
 .price b{color:var(--ink);font-size:16px}.price strong{color:var(--ink);font-family:var(--display);font-size:22px}
+.price strong small{font:500 14px var(--body);color:var(--muted)}.price .aitag{font-size:10.5px;padding:0 5px;vertical-align:1px}
 .hero .txt{display:flex;flex-direction:column;gap:14px}
 .hero svg{width:100%;height:auto;display:block;max-width:300px;margin:0 auto}
 .card{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:20px;display:flex;flex-direction:column;gap:16px}
@@ -89,9 +99,9 @@ input[type=text]:focus-visible,button:focus-visible{outline:3px solid var(--teal
 .ages button[aria-pressed=true]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
 .btn{appearance:none;border:0;border-radius:14px;padding:15px 20px;font:700 17px var(--body);cursor:pointer;background:var(--accent);color:var(--accent-ink);box-shadow:0 3px 0 rgba(0,0,0,.2)}
 .btn:active{transform:translateY(2px);box-shadow:0 1px 0 rgba(0,0,0,.2)}
-.btn.big{display:flex;flex-direction:column;align-items:flex-start;gap:2px;text-align:left;padding:16px 22px;width:100%}
-.btn.big b{font-family:var(--display);font-size:22px;line-height:1.15}
-.btn.big span{font-size:14.5px;font-weight:600;opacity:.85}
+.btn.bigbtn{display:flex;flex-direction:column;align-items:flex-start;gap:2px;text-align:left;padding:16px 22px;width:100%}
+.btn.bigbtn b{font-family:var(--display);font-size:22px;line-height:1.15}
+.btn.bigbtn span{font-size:14.5px;font-weight:600;opacity:.85}
 .btn:disabled{opacity:.45;cursor:not-allowed}
 .btn.ghost{background:transparent;color:var(--ink);border:1.5px solid var(--line);box-shadow:none}
 .btn.dark{background:var(--ink);color:var(--bg)}
@@ -210,6 +220,11 @@ a.btn{text-decoration:none;display:inline-block;text-align:center}
 .bl{display:grid;grid-template-columns:24px 1fr;gap:10px;align-items:start;padding:8px 10px;border-radius:12px}
 .bl.top{background:var(--soft)}
 .bl b{font-size:15px;display:block}.bl small{font-size:13px;color:var(--muted)}
+.blx{display:flex;flex-wrap:wrap;align-items:center;gap:8px 12px}
+.blx > div{flex:1 1 180px;min-width:0}
+.bl .imp{flex:none;padding:8px 14px;font-size:14px;border-radius:12px;white-space:nowrap}
+.lockwhy{background:var(--soft);border-left:4px solid var(--accent);border-radius:10px;padding:10px 12px;font-weight:600}
+.hilite{box-shadow:0 0 0 4px var(--accent);transition:box-shadow .3s}
 .fit{display:grid;grid-template-columns:1fr 1fr;gap:12px}
 .fitc{border:1.5px solid var(--line);border-radius:16px;padding:14px;display:flex;flex-direction:column;gap:10px;border-top-width:6px}
 .fitc h3{display:flex;align-items:center;gap:8px}
@@ -242,7 +257,147 @@ a.btn{text-decoration:none;display:inline-block;text-align:center}
 .modal .card{max-width:420px;width:100%}
 #confetti{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:4}
 [hidden]{display:none!important}
+.tiles4{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}
+.t4{background:var(--soft);border-radius:14px;padding:12px;border-top:4px solid var(--accent);display:flex;flex-direction:column;gap:2px;min-width:0}
+.t4 span{font-size:12px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--muted)}
+.t4 b{font-family:var(--display);font-size:21px;line-height:1.15;overflow-wrap:anywhere}
+.t4 em{font-style:normal;font-size:13px;color:var(--muted)}
+.sup{border-width:2px}
+.sup .eyebrow,.letter .eyebrow{font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.sup ul{margin:0;padding-left:20px;display:flex;flex-direction:column;gap:6px}
+.pqs{display:flex;flex-direction:column;gap:14px}
+.pq{border:1.5px solid var(--line);border-radius:14px;padding:14px;display:flex;flex-direction:column;gap:10px}
+.pqm{max-width:230px;margin:0}
+.pqo{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+.pqo.sh{grid-template-columns:repeat(4,minmax(0,1fr))}
+.pqo span{border:1.5px solid var(--line);border-radius:10px;padding:6px;display:flex;align-items:center;justify-content:center;gap:6px;font-weight:600;min-height:46px;text-align:center}
+.pqo em{font-style:normal;font-weight:800;color:var(--muted);font-size:13px}
+.pqo svg{width:34px;height:34px;color:var(--cP)}
+.pq details summary{cursor:pointer;font-weight:700;color:var(--teal);padding:4px 0}
+.pq details p{margin-top:6px}
+.flash.sm{font-size:clamp(20px,6vw,30px);padding:18px 10px;margin-top:8px;animation:none}
+.prog{display:flex;flex-direction:column;gap:8px;background:var(--soft);border-radius:14px;padding:14px}
+.prog .track{height:12px;background:var(--surface)}
+.prog .track i{background:var(--good)}
+.progt{display:flex;flex-direction:column;gap:2px}.progt span{font-size:14px;color:var(--muted)}
+.wk2{border:1.5px solid var(--line);border-top-width:5px;border-radius:16px;padding:14px;display:flex;flex-direction:column;gap:10px}
+.wkh{display:grid;grid-template-columns:54px 1fr;gap:12px;align-items:center}
+.wkh .n{width:54px;height:54px;border-radius:16px;display:grid;place-items:center;color:#fff;font:800 13px var(--display);text-align:center;line-height:1.05}
+.wkh .n b{font-size:22px;display:block}
+.days{display:flex;flex-direction:column;gap:6px}
+.day{display:grid;grid-template-columns:26px 1fr;gap:10px;align-items:start;padding:8px 10px;border-radius:10px;cursor:pointer;margin:0;font-weight:500;font-size:15px}
+.day:hover{background:var(--soft)}
+.day input{width:22px;height:22px;margin:1px 0 0;accent-color:var(--good);cursor:pointer}
+.day em{font-style:normal;font-weight:700;color:var(--muted);font-size:12px;letter-spacing:.04em;text-transform:uppercase;display:block}
+.day input:checked + span{color:var(--muted);text-decoration:line-through}
+.letter{border:2px solid var(--accent)}
+.mantra{background:var(--ink);color:var(--bg);border-radius:16px;padding:18px;display:flex;flex-direction:column;gap:4px;text-align:center}
+.mantra span{font-size:26px;font-weight:700}
+.mantra b{font-family:var(--display);font-size:20px}
+.mantra small{opacity:.7;font-size:13px}
+.coupon{display:flex;flex-direction:column;gap:8px;align-items:flex-start}
+.linkbtn{background:none;border:0;padding:4px 0;color:var(--teal);font:700 15px var(--body);cursor:pointer;text-decoration:underline;text-underline-offset:3px}
+.couponRow{display:flex;gap:8px;width:100%;flex-wrap:wrap}
+.couponRow input{flex:1 1 160px;min-width:0;padding:12px 14px;border-radius:12px;border:1.5px solid var(--line);background:var(--bg);color:var(--ink);font:700 17px var(--body);letter-spacing:.08em;text-transform:uppercase}
+.couponRow input:disabled{opacity:.75}
+.couponRow .btn{padding:12px 18px;font-size:15px}
+.gift{border:2px dashed var(--accent)}
+.gift .eyebrow,.dl .eyebrow{font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.codebox{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;background:var(--soft);border-radius:14px;padding:14px 16px}
+.codebox b{font-family:var(--display);font-size:clamp(24px,7vw,34px);letter-spacing:.06em;font-variant-numeric:tabular-nums}
+.codebox .btn{padding:10px 16px;font-size:15px}
+.pdfrow{display:flex;flex-direction:column;gap:6px;align-items:flex-start}
+.prem .pdfMsg{color:inherit;opacity:.8}
+.pdfdoc{position:absolute;left:-30000px;top:0;width:760px;--bg:#FFFFFF;--surface:#FFFFFF;--ink:#10231F;--muted:#4F625C;--line:#D3DDD9;--soft:#EEF3F1;--teal:#0B7A6B;--good:#1B8A4B;--bad:#C2412D;color-scheme:light;color:#10231F;background:#fff;font-family:var(--body)}
+.pdfdoc *{animation:none!important;transition:none!important}
+.pmeas{width:760px;padding:0 44px;box-sizing:border-box;display:flex;flex-direction:column;gap:12px}
+.pdfdoc .sheet{width:760px;height:1075px;box-sizing:border-box;padding:40px 44px 72px;background:#fff;display:flex;flex-direction:column;gap:12px;overflow:hidden;position:relative}
+.pdfdoc .sheet > *{flex-shrink:0}
+.pdfdoc .split{border:0!important;background:none!important;padding:0!important;box-shadow:none!important}
+.pdfdoc summary,.pdfdoc .noprint{display:none!important}
+.pdfdoc .pfoot{position:absolute;left:44px;right:44px;bottom:16px;display:flex;justify-content:space-between;gap:12px;font-size:11px;color:#4F625C}
+.pdfdoc .phead{display:flex;justify-content:space-between;align-items:flex-end;gap:12px;border-bottom:2px solid #10231F;padding-bottom:10px}
+.pdfdoc .phead > div:last-child{display:flex;flex-direction:column;align-items:flex-end;font-size:13px;color:#4F625C;text-align:right}
+.pdfdoc .phead > div:last-child b{font-family:var(--display);font-size:18px;color:#10231F}
+@media (max-width:520px){.tiles4{grid-template-columns:repeat(2,minmax(0,1fr))}.pqo svg{width:28px;height:28px}}
 @media (max-width:520px){.fit,.pg{grid-template-columns:1fr}.habits{grid-template-columns:1fr}.stand{grid-template-columns:1fr}.dots{max-width:200px}.hero{grid-template-columns:1fr}.hero svg{max-width:220px;order:-1}.plans{grid-template-columns:1fr}.bar{grid-template-columns:24px 62px 1fr 40px}.skills{gap:4px}.ico{width:46px;height:46px}}
+
+/* Whimsi chat: a floating button on unlocked reports opens a chat panel (a bottom sheet on phones). */
+.wOn .wrap{padding-bottom:92px}
+.wbtn{position:fixed;right:16px;bottom:16px;z-index:6;display:inline-flex;align-items:center;gap:8px;border:0;border-radius:99px;padding:7px 18px 7px 7px;background:var(--ink);color:var(--bg);font:700 15px var(--body);cursor:pointer;box-shadow:0 6px 20px rgba(0,0,0,.25)}
+[data-age="kids"] .wbtn{background:var(--cP);color:#fff}
+.wav{display:inline-grid;place-items:center;flex:none}
+.aitag{font-style:normal;font-size:11px;font-weight:800;letter-spacing:.04em;background:var(--accent);color:var(--accent-ink);padding:1px 6px;border-radius:6px}
+.wcard{flex-direction:row;align-items:flex-start;gap:14px;border:2px solid var(--cP)}
+.wcard .wav svg{width:46px;height:46px}
+.wcard > div{display:flex;flex-direction:column;gap:8px;align-items:flex-start}
+.wcard .eyebrow{font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.wcard h3{font-size:20px}
+.wpanel{position:fixed;right:16px;bottom:16px;z-index:6;width:min(390px,calc(100vw - 32px));height:min(600px,calc(100dvh - 32px));background:var(--surface);color:var(--ink);border:1px solid var(--line);border-radius:20px;box-shadow:0 18px 50px rgba(0,0,0,.3);display:flex;flex-direction:column;overflow:hidden}
+.whead{display:flex;align-items:center;gap:10px;padding:12px 12px 12px 14px;border-bottom:1px solid var(--line)}
+.whead div{flex:1;min-width:0;display:flex;flex-direction:column;line-height:1.25}
+.whead b{font-family:var(--display);font-size:18px}
+.whead small{font-size:12.5px;color:var(--muted)}
+.wx{flex:none;border:0;background:var(--soft);color:var(--ink);width:36px;height:36px;border-radius:50%;display:grid;place-items:center;cursor:pointer}
+.wlog{flex:1;overflow-y:auto;overscroll-behavior:contain;padding:14px 14px 8px;display:flex;flex-direction:column;gap:10px}
+.wm{max-width:86%;padding:9px 13px;border-radius:16px;font-size:15px;line-height:1.45;white-space:pre-wrap;overflow-wrap:anywhere}
+.wm.u{align-self:flex-end;background:var(--teal);color:var(--surface);border-bottom-right-radius:5px}
+.wm.a{align-self:flex-start;background:var(--soft);border-bottom-left-radius:5px}
+.wm.wait{color:var(--muted);letter-spacing:.2em}
+.wm.note{align-self:center;max-width:100%;background:none;color:var(--muted);font-size:13px;text-align:center;padding:2px 8px}
+.wsug{display:flex;flex-wrap:wrap;gap:6px;padding:0 14px 10px}
+.wsug button{border:1.5px solid var(--line);background:var(--bg);color:var(--ink);border-radius:99px;padding:6px 11px;font:600 13px var(--body);cursor:pointer;text-align:left}
+.wform{display:flex;gap:8px;padding:10px 12px;border-top:1px solid var(--line)}
+.wform input[type=text]{flex:1;min-width:0;padding:11px 13px}
+.wform .btn{padding:10px 16px;font-size:15px}
+.wfoot{padding:0 14px 10px;font-size:11.5px;color:var(--muted);text-align:center}
+@media (max-width:520px){.wpanel{right:0;bottom:0;width:100%;height:min(88dvh,640px);border-radius:20px 20px 0 0;border-width:1px 0 0}}
+@media (prefers-reduced-motion:no-preference){.wm.wait{animation:pulse 1s ease-in-out infinite}.wpanel:not([hidden]){animation:slide .25s ease-out both}}
+
+/* Age looks: data-age on <html> is set once an age is picked. Adults 18 to 59 keep the default look. */
+/* Children 6 to 12: warm paper, colour in every corner, a rainbow question card and a colour for each answer. */
+:root[data-age="kids"]{--bg:#FFF7EA;--soft:#FFEBCC;--line:#EBD3AE;--teal:#7048E8}
+@media (prefers-color-scheme: dark){
+  :root[data-age="kids"]:not([data-theme="light"]){--bg:#140F26;--surface:#1E1838;--soft:#2A2250;--line:#3D3270;--teal:#B197FC}
+}
+:root[data-age="kids"][data-theme="dark"]{--bg:#140F26;--surface:#1E1838;--soft:#2A2250;--line:#3D3270;--teal:#B197FC}
+[data-age="kids"] body{background:
+  radial-gradient(38vmax 38vmax at 0 0,color-mix(in srgb,var(--cM) 20%,transparent),transparent 70%),
+  radial-gradient(34vmax 34vmax at 100% 6%,color-mix(in srgb,var(--cL) 20%,transparent),transparent 70%),
+  radial-gradient(36vmax 36vmax at 0 100%,color-mix(in srgb,var(--cN) 18%,transparent),transparent 70%),
+  radial-gradient(36vmax 36vmax at 100% 100%,color-mix(in srgb,var(--accent) 26%,transparent),transparent 70%),
+  var(--bg);background-attachment:fixed}
+[data-age="kids"] .card{border-width:2px;border-radius:24px}
+[data-age="kids"] .btn{border-radius:18px}
+[data-age="kids"] .kick,[data-age="kids"] .ages button[aria-pressed=true]{background:var(--cP);border-color:var(--cP);color:#fff}
+[data-age="kids"] .facts div{border-top:4px solid var(--cM)}
+[data-age="kids"] .facts div:nth-child(2){border-top-color:var(--cL)}[data-age="kids"] .facts div:nth-child(3){border-top-color:var(--cN)}
+[data-age="kids"] #prog{background:linear-gradient(90deg,var(--cM),var(--cW),var(--accent),var(--cN),var(--cL),var(--cP))}
+[data-age="kids"] #qCard{border:3px solid transparent;background:linear-gradient(var(--surface),var(--surface)) padding-box,linear-gradient(120deg,var(--cM),var(--cW),var(--accent),var(--cN),var(--cL),var(--cP)) border-box}
+[data-age="kids"] .opts button{--o:var(--cL);border:2px solid var(--o);background:color-mix(in srgb,var(--o) 12%,var(--surface));box-shadow:0 4px 0 var(--o);border-radius:18px}
+[data-age="kids"] .opts button:nth-child(2){--o:var(--cM)}[data-age="kids"] .opts button:nth-child(3){--o:var(--cN)}[data-age="kids"] .opts button:nth-child(4){--o:var(--cW)}
+[data-age="kids"] .opts button.picked{background:var(--o);border-color:var(--o);color:#fff}
+[data-age="kids"] .heroR{background:#2B1F63;border-color:#2B1F63;color:#FFF7EA}
+/* Teens 13 to 17: hard outlines and offset shadows, electric violet highlights. */
+:root[data-age="teen"]{--teal:#6741D9}
+@media (prefers-color-scheme: dark){
+  :root[data-age="teen"]:not([data-theme="light"]){--teal:#9775FA}
+}
+:root[data-age="teen"][data-theme="dark"]{--teal:#9775FA}
+[data-age="teen"] .kick,[data-age="teen"] .ages button[aria-pressed=true]{background:var(--teal);border-color:var(--teal);color:var(--bg)}
+[data-age="teen"] .btn{border-radius:10px;box-shadow:3px 3px 0 var(--ink)}
+[data-age="teen"] .btn.ghost{box-shadow:none}
+[data-age="teen"] #prog{background:linear-gradient(90deg,var(--teal),var(--cM))}
+[data-age="teen"] #qCard{border:2px solid var(--ink);box-shadow:5px 5px 0 var(--teal)}
+[data-age="teen"] .opts button{border:2px solid var(--ink);box-shadow:3px 3px 0 var(--ink);border-radius:10px}
+[data-age="teen"] .opts button.picked{background:var(--teal);border-color:var(--teal);color:var(--bg);box-shadow:none}
+/* 60 plus: calmer and easier to read. Larger questions and answers, nothing bouncing or pulsing. */
+[data-age="calm"] body{font-size:17px}
+[data-age="calm"] .note{font-size:14px}
+[data-age="calm"] .qtext{font-size:clamp(22px,5.6vw,29px);line-height:1.25}
+[data-age="calm"] .opts button{min-height:66px;font-size:19px;border-width:2px}
+[data-age="calm"] #heroGo,[data-age="calm"] .flash,[data-age="calm"] .low #tSec,[data-age="calm"] .opts button{animation:none}
+[data-age="calm"] .opts button:hover,[data-age="calm"] .opts button.picked{transform:none}
 
 @media (prefers-reduced-motion:no-preference){
   .track i{transition:width .25s linear}
@@ -294,7 +449,8 @@ a.btn{text-decoration:none;display:inline-block;text-align:center}
 <body>
 <div class="wrap">
   <header class="bar">
-    <div class="brand">Buddhi<i>Score</i></div>
+    <div class="hl"><button type="button" class="back" id="back" hidden><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg>Back</button>
+    <div class="brand"><svg viewBox="0 0 512 512" width="30" height="30" aria-hidden="true" style="flex:none"><rect width="512" height="512" rx="116" fill="#10231F"/><g fill="none" stroke="#FFB020" stroke-width="62" stroke-linecap="round" stroke-linejoin="round"><path d="M150 158 V370"/><path d="M150 158 H220 a53 53 0 0 1 0 106 H150"/><path d="M150 264 H240 a53 53 0 0 1 0 106 H150"/></g><path d="M330 156 a50 50 0 0 0 100 0" fill="none" stroke="#fff" stroke-width="26" stroke-linecap="round"/><circle cx="380" cy="112" r="24" fill="#fff"/></svg><span>Buddhi<i>Score</i></span></div></div>
     <button type="button" class="mute" id="mute" aria-pressed="false">Sound on</button>
   </header>
 
@@ -311,7 +467,7 @@ a.btn{text-decoration:none;display:inline-block;text-align:center}
         <p class="lede">Find out in 10 minutes. Five thinking skills, fresh questions every time, and a report worth showing someone. For ages 6 to 60+.</p>
         <div class="ctarow">
           <button type="button" class="btn" id="heroGo">Take the test</button>
-          <span class="price"><b>Free score</b>Full report only <strong>₹49</strong></span>
+          <span class="price"><b>Free score</b><span>Full report +</span><span><em class="aitag">AI</em> powered chat</span><strong><small>only </small>₹49</strong></span>
         </div>
       </div>
       <svg viewBox="0 0 320 200" aria-hidden="true">
@@ -348,7 +504,7 @@ a.btn{text-decoration:none;display:inline-block;text-align:center}
     <form class="card" id="startForm">
       <div>
         <label for="name">Your first name</label>
-        <input type="text" id="name" maxlength="24" autocomplete="given-name" placeholder="e.g. Ananya">
+        <input type="text" id="name" maxlength="24" autocomplete="given-name" placeholder="e.g. Ttarangg">
       </div>
       <div>
         <label id="ageLab">Your age</label>
@@ -359,7 +515,7 @@ a.btn{text-decoration:none;display:inline-block;text-align:center}
     </form>
     <div class="plans">
       <div class="plan"><h3>Free</h3><b>₹0</b><ul><li>Estimated score</li><li>Where you stand on the curve</li><li>Five-skill breakdown</li></ul></div>
-      <div class="plan hot"><h3>Full report</h3><b>₹49</b><ul><li>What each skill result means</li><li>Every answer explained</li><li>A practice plan for your weakest skill</li></ul></div>
+      <div class="plan hot"><h3>Full report</h3><b>₹49</b><ul><li>What each skill result means</li><li>Every answer explained</li><li>A practice plan for your weakest skill</li><li>AI-powered chat to discuss your report</li></ul></div>
     </div>
     <p class="note">Buddhi Score is a practice estimate for curiosity and self-improvement. It is not a clinical IQ assessment and should not be used for diagnosis, admissions or hiring.</p>
   </section>
@@ -432,15 +588,29 @@ a.btn{text-decoration:none;display:inline-block;text-align:center}
     <div class="card lock" id="lockCard">
       <h2>Ready to unlock your brain's full potential?</h2>
       <p>The free result tells you the score. The full report tells you why, and what to do about it.</p>
+      <p class="lockwhy" id="lockWhy" hidden></p>
       <ul class="inside">
         <li><b>Your thinking profile</b>A written summary of how your mind works and your next score target</li>
+        <li><b>AI-powered chat about your report</b>Discuss your results with Whimsi, your AI thinking buddy, and get practice puzzles with hints. 20 messages included</li>
         <li><b>Five skill deep-dives</b>What each skill is, how you did at each difficulty, where you use it</li>
         <li><b>Speed and difficulty analysis</b>Time spent on every question, and where you lose points</li>
-        <li><b>4-week improvement plan</b>A daily 15-minute routine built around your weakest skills</li>
+        <li><b>Your superpower and growth zone</b>How to use your strongest skill, and fresh practice questions for your weakest</li>
+        <li><b>4-week day-by-day plan</b>15 minutes a day, with a tracker you tick off as you go</li>
         <li><b>Careers and subjects that fit</b>Fields that use your strongest skills, and a parent guide for children under 13</li>
         <li><b>Every answer explained</b>Your answer, the right answer and the reasoning</li>
+        <li><b>Download and a reward</b>Save your report and plan as a PDF, and get a one-time code for your next full report at ₹29</li>
       </ul>
-      <div class="cta"><button class="btn big" id="unlock"><b>Unlock your brain's full potential</b><span>Full report + 4-week practice plan · ₹49</span></button><span class="note">One-time payment by UPI, card or netbanking through Razorpay. See our <a href="/refund.html">refund policy</a>.</span></div>
+      <div class="cta"><button class="btn bigbtn" id="unlock"><b>Unlock your brain's full potential</b><span id="unlockSub">Full report, AI chat and 4-week plan · ₹49</span></button><span class="note">One-time payment by UPI, card or netbanking through Razorpay. See our <a href="/refund.html">refund policy</a>.</span></div>
+      <div class="coupon">
+        <button type="button" class="linkbtn" id="couponToggle">Have a Buddhi Score code?</button>
+        <div class="couponRow" id="couponRow" hidden>
+          <label for="couponIn" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)">Your code</label>
+          <input type="text" id="couponIn" placeholder="BS-XXXX-XXXX" autocomplete="off" autocapitalize="characters" spellcheck="false" maxlength="16">
+          <button type="button" class="btn dark" id="couponApply">Apply</button>
+          <button type="button" class="btn ghost" id="couponRemove" hidden>Remove</button>
+        </div>
+        <p class="note" id="couponMsg" aria-live="polite"></p>
+      </div>
     </div>
     <div class="full" id="fullCard" hidden></div>
     <div class="card" id="shareCard">
@@ -474,6 +644,19 @@ a.btn{text-decoration:none;display:inline-block;text-align:center}
       <button type="button" class="btn ghost" id="payClose" hidden>Close</button>
     </div>
   </div>
+</div>
+
+<button type="button" class="wbtn" id="wBtn" hidden aria-haspopup="dialog"><span class="wav" aria-hidden="true"><svg viewBox="0 0 40 40" width="32" height="32"><circle cx="20" cy="21" r="17" fill="#6C5CE7"/><circle cx="14.5" cy="19" r="2.5" fill="#fff"/><circle cx="25.5" cy="19" r="2.5" fill="#fff"/><path d="M14 25.5q6 5 12 0" stroke="#fff" stroke-width="2.5" fill="none" stroke-linecap="round"/><path d="M33 1.5l1.7 3.8 3.8 1.7-3.8 1.7L33 12.5l-1.7-3.8L27.5 7l3.8-1.7z" fill="#FFB020"/></svg></span>Ask Whimsi<em class="aitag">AI</em></button>
+<div class="wpanel" id="whimsi" role="dialog" aria-labelledby="wTitle" hidden>
+  <div class="whead">
+    <span class="wav" aria-hidden="true"><svg viewBox="0 0 40 40" width="38" height="38"><circle cx="20" cy="21" r="17" fill="#6C5CE7"/><circle cx="14.5" cy="19" r="2.5" fill="#fff"/><circle cx="25.5" cy="19" r="2.5" fill="#fff"/><path d="M14 25.5q6 5 12 0" stroke="#fff" stroke-width="2.5" fill="none" stroke-linecap="round"/><path d="M33 1.5l1.7 3.8 3.8 1.7-3.8 1.7L33 12.5l-1.7-3.8L27.5 7l3.8-1.7z" fill="#FFB020"/></svg></span>
+    <div><b id="wTitle">Whimsi</b><small id="wLeft">AI-powered · 20 messages per report</small></div>
+    <button type="button" class="wx" id="wClose" aria-label="Close chat"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+  </div>
+  <div class="wlog" id="wLog" aria-live="polite"></div>
+  <div class="wsug" id="wSug"></div>
+  <form class="wform" id="wForm"><input type="text" id="wIn" maxlength="500" placeholder="Ask Whimsi…" autocomplete="off" aria-label="Message to Whimsi"><button type="submit" class="btn" id="wSend">Send</button></form>
+  <p class="wfoot" id="wFoot"></p>
 </div>
 
 <script>
@@ -756,7 +939,7 @@ var BRAIN=[
  {k:"W",name:"Temporal lobe",does:"Understands words and their meaning."},
  {k:"M",name:"Hippocampus",does:"Sits deep inside the temporal lobe and helps you hold new information, working with the frontal lobe."}
 ];
-function brain(el,legend,val,best){
+function brain(el,legend,val,best,shared){
   var lab=function(k,x,y,sz){return '<text x="'+x+'" y="'+y+'" text-anchor="middle" font-family="Figtree,sans-serif" font-weight="700" font-size="'+(sz||13)+'" fill="#fff">'+DOMS[k]+'</text><text x="'+x+'" y="'+(y+(sz?13:16))+'" text-anchor="middle" font-family="Bricolage Grotesque,sans-serif" font-weight="800" font-size="'+(sz?12:15)+'" fill="#fff">'+val[k]+'%</text>'};
   var hot=function(k){return k===best?' class="hot"':""};
   var blob="M60,150 C55,90 110,40 200,38 C290,36 350,80 352,150 C353,185 335,210 300,218 L250,222 C220,224 200,215 170,215 C130,215 100,220 80,200 C65,188 61,170 60,150 Z";
@@ -783,17 +966,33 @@ function brain(el,legend,val,best){
    '<text x="30" y="150" text-anchor="middle" font-family="Figtree,sans-serif" font-size="10.5" fill="var(--muted)" transform="rotate(-90 30 150)">front of head</text>'+
   '</svg>';
   el.innerHTML=h;
+  /* Skills under IMPROVE_BELOW get a button to the full report's tips for that skill (not on a friend's shared report). */
   legend.innerHTML=BRAIN.map(function(b){
-    return '<div class="bl'+(b.k===best?" top":"")+'">'+icon(b.k,true)+'<div><b>'+b.name+" → "+DOMS[b.k]+" "+val[b.k]+"%"+(b.k===best?' <span class="lv">your most active</span>':"")+'</b><small>'+b.does+'</small></div></div>';
+    return '<div class="bl'+(b.k===best?" top":"")+'">'+icon(b.k,true)+'<div class="blx"><div><b>'+b.name+" → "+DOMS[b.k]+" "+val[b.k]+"%"+(b.k===best?' <span class="lv">your most active</span>':"")+'</b><small>'+b.does+'</small></div>'+
+      (!shared&&val[b.k]<IMPROVE_BELOW?'<button type="button" class="btn imp noprint" data-k="'+b.k+'" aria-label="How to improve '+DOMS[b.k]+'">How to improve →</button>':"")+'</div></div>';
   }).join("");
 }
+var IMPROVE_BELOW=50;
+/* Locked report: point at the unlock card and say what it covers for this skill. Unlocked: jump to the skill's deep-dive. */
+function improve(k){
+  var t;
+  if(S.unlocked)t=document.querySelector('#fullCard .sk[data-sk="'+k+'"]');
+  if(!t){
+    t=$("lockCard");
+    $("lockWhy").textContent="Your "+DOMS[k]+" score has room to grow. The full report shows how to improve it: a "+DOMS[k]+" deep-dive, practice questions, a 4-week plan, and an AI chat to ask what to work on.";
+    $("lockWhy").hidden=false;
+  }
+  t.scrollIntoView({behavior:CALM?"auto":"smooth",block:"start"});
+  t.classList.add("hilite");setTimeout(function(){t.classList.remove("hilite")},1800);
+}
+$("rBrainL").addEventListener("click",function(e){var t=e.target.closest&&e.target.closest(".imp");if(t){SFX.tap();improve(t.getAttribute("data-k"))}});
 
 function confetti(){
   if(CALM)return;
   var cv=document.createElement("canvas");cv.id="confetti";document.body.appendChild(cv);
   var ctx=cv.getContext("2d"),w=cv.width=innerWidth,h=cv.height=innerHeight;
   var cols=["#6C5CE7","#0B8A78","#E8590C","#1C7ED6","#D6336C","#FFB020"],ps=[],i;
-  for(i=0;i<110;i++)ps.push({x:w/2+(Math.random()-.5)*120,y:h*.3,vx:(Math.random()-.5)*11,vy:-Math.random()*11-3,s:5+Math.random()*7,c:cols[i%6],r:Math.random()*6,vr:(Math.random()-.5)*.4});
+  for(i=0;i<(AGE==="kids"?220:110);i++)ps.push({x:w/2+(Math.random()-.5)*120,y:h*.3,vx:(Math.random()-.5)*11,vy:-Math.random()*11-3,s:5+Math.random()*7,c:cols[i%6],r:Math.random()*6,vr:(Math.random()-.5)*.4});
   var t0=performance.now();
   (function step(t){
     var el=t-t0;ctx.clearRect(0,0,w,h);
@@ -875,11 +1074,19 @@ function hero3d(){
 /* ---------- state ---------- */
 var S={name:"",band:null,qs:[],i:0,ans:[],timer:null,t0:0,used:0,busy:false};
 
+/* Look and sound follow the age group: colourful for children, bold for teens, calmer for 60 plus. Adults keep the default. */
+var AGE="";
+function setAge(b){
+  AGE=!b?"":b.set==="J"?"kids":b.id==="13-17"?"teen":b.id==="60+"?"calm":"";
+  if(AGE)document.documentElement.setAttribute("data-age",AGE);else document.documentElement.removeAttribute("data-age");
+  useSounds(AGE==="kids"?SFX_TOY:AGE==="calm"?SFX_CHIME:SFX_ARCADE);
+}
+
 $("skills").innerHTML=Object.keys(DOMS).map(function(k){return '<div class="skill" data-k="'+k+'">'+icon(k)+'<span>'+DOMS[k]+'</span></div>'}).join("");
 BANDS.forEach(function(b){
   var bt=document.createElement("button");bt.type="button";bt.textContent=b.label;bt.setAttribute("aria-pressed","false");bt.id="age-"+b.id.replace("+","p");
   bt.onclick=function(){
-    SFX.tap();S.band=b;[].forEach.call($("ages").children,function(c){c.setAttribute("aria-pressed",c===bt?"true":"false")});
+    S.band=b;setAge(b);SFX.tap();[].forEach.call($("ages").children,function(c){c.setAttribute("aria-pressed",c===bt?"true":"false")});
     $("go").disabled=false;$("fQ").textContent=b.set==="S"?20:15;$("kidNote").hidden=b.id!=="6-8";
   };
   $("ages").appendChild(bt);
@@ -887,13 +1094,13 @@ BANDS.forEach(function(b){
 hero3d();
 $("heroGo").onclick=function(){SFX.tap();$("startForm").scrollIntoView({behavior:CALM?"auto":"smooth",block:"center"});try{$("name").focus({preventScroll:true})}catch(e){}};
 
-function show(id){["start","quiz","report"].forEach(function(s){$(s).hidden=s!==id});window.scrollTo(0,0)}
+function show(id){["start","quiz","report"].forEach(function(s){$(s).hidden=s!==id});$("back").hidden=id==="start";wPaint();window.scrollTo(0,0)}
 
 $("startForm").addEventListener("submit",function(ev){
   ev.preventDefault();if(!S.band)return;
   S.name=$("name").value.trim()||"You";
   S.qs=build(S.band.set);S.i=0;S.ans=[];S.used=0;S.times=[];
-  omStop();SFX.start();show("quiz");ask();
+  omStop();SFX.start();mark();show("quiz");ask();
 });
 
 function stopTimer(){if(S.timer){clearInterval(S.timer);S.timer=null}}
@@ -935,6 +1142,7 @@ function present(q){
 
 function countdown(secs,done,quiet){
   stopTimer();var end=Date.now()+secs*1000,lastSec=-1;
+  S.shift=function(ms){end+=ms};
   var tick=function(){
     var left=Math.max(0,end-Date.now());
     $("tBar").style.width=(left/(secs*1000)*100)+"%";
@@ -986,9 +1194,10 @@ function tone(f,dur,type,vol,when,f2){
     o.connect(g);g.connect(c.destination);o.start(t);o.stop(t+dur+.03);
   }catch(e){}
 }
-/* Original 8-bit style effects: square-wave blips, runs and sweeps. Not copies of any game's sounds. */
+/* Original effects, one set per age group. Not copies of any game's sounds. */
 function run(notes,step,type,vol,len){notes.forEach(function(n,i){if(n)tone(n,len||step*1.1,type||"square",vol||.06,i*step)})}
-var SFX={
+/* 13 to 59: 8-bit style square-wave blips, runs and sweeps. */
+var SFX_ARCADE={
   tap:function(){run([740,1109],.045,"square",.06,.07)},
   start:function(){run([262,330,392,523,659,784],.07,"square",.06);tone(131,.42,"triangle",.14)},
   hide:function(){tone(820,.2,"square",.05,0,190)},
@@ -997,6 +1206,29 @@ var SFX={
   win:function(){run([392,523,659,784,0,659,784,1047],.09,"square",.06);tone(1047,.5,"square",.05,.74);tone(1319,.5,"square",.035,.74);run([131,131,196,196,262],.18,"triangle",.13,.2)},
   unlock:function(){run([523,587,659,784,880,1047,1319,1568],.045,"square",.055,.08)}
 };
+/* 6 to 12: toy box. Bloops, slide whistles, xylophone runs and sparkles. */
+var SFX_TOY={
+  tap:function(){tone(520,.11,"sine",.16,0,1040)},
+  start:function(){tone(330,.3,"sine",.12,0,1320);run([0,0,0,0,523,659,784,1047,1319],.07,"triangle",.14,.2)},
+  hide:function(){tone(1400,.3,"sine",.12,0,330)},
+  tick:function(){tone(1568,.05,"triangle",.12)},
+  out:function(){run([660,494],.17,"triangle",.15,.24)},
+  win:function(){run([523,659,784,1047,0,784,1047,1319],.09,"triangle",.14,.18);tone(1568,.7,"triangle",.11,.74);[2093,2637,3136,4186].forEach(function(f,i){tone(f,.14,"sine",.05,.86+i*.07)})},
+  unlock:function(){tone(600,.45,"sine",.09,0,2400);run([1568,0,2093,0,2637,0,3136],.05,"sine",.08,.14)}
+};
+/* 60 plus: soft, slow bells. Lower and quieter, no harsh edges. */
+var SFX_CHIME={
+  tap:function(){tone(660,.2,"sine",.08)},
+  start:function(){run([392,494,587,784],.14,"sine",.09,.7)},
+  hide:function(){tone(880,.45,"sine",.07,0,660)},
+  tick:function(){tone(880,.08,"sine",.05)},
+  out:function(){run([587,494,392],.2,"sine",.08,.6)},
+  win:function(){run([523,659,784,1047],.2,"sine",.09,1);tone(262,1.4,"sine",.07)},
+  unlock:function(){run([784,988,1175,1568],.12,"sine",.08,.8)}
+};
+var SFX={};
+function useSounds(set){for(var k in set)SFX[k]=set[k]}
+useSounds(SFX_ARCADE);
 (function(){
   var b=$("mute"),paint=function(){b.textContent=MUTE?"Sound off":"Sound on";b.setAttribute("aria-pressed",MUTE?"true":"false")};
   paint();
@@ -1104,9 +1336,72 @@ var PROFILE={P:["The Pattern Spotter","You see structure quickly. Give you a new
  L:["The Strategist","You reason step by step and trust what follows from the facts. You are hard to fool with a weak argument."],
  M:["The Quick Recaller","You hold details in mind while working on them. That makes you quick at following and combining information."],
  A:["The All-Rounder","Your five skills sit close together. You have no weak link, which is rarer than a single standout strength."]};
+var USE={
+ P:["Turn notes into diagrams and mind maps. You will remember them better than plain text.","Learn new apps and tools by exploring them, not by reading the manual.","Volunteer for anything visual: slides, layouts, room plans, schedules."],
+ N:["Own the numbers in any group: the budget, the bill split, the trip cost.","Check offers, EMIs and discounts yourself before you sign or pay.","Use quick estimates to make everyday decisions faster than others."],
+ W:["Explain what you learn to someone else. Teaching locks it in.","Write regularly: a journal, posts, or clear notes for your team.","Use reading as your shortcut to learn any new subject quickly."],
+ L:["Be the planner: trips, projects, study timetables.","Break any big problem into steps and solve them in order.","Play strategy games and debate to stretch it even further."],
+ M:["Study by testing yourself, not by re-reading. Your memory rewards recall.","Pick up a language or an instrument. You have a head start.","Be the person who remembers the details in meetings and plans."]
+};
+var DAYS={S:{
+ P:["Do 5 visual puzzles: grids, spot-the-rule or tangrams","Look at a simple drawing for 10 seconds, then copy it from memory","Solve a spot-the-difference puzzle","Build a shape from blocks, matchsticks or a tangram set","Find 3 repeating patterns around you and name each rule","Sort 10 objects two different ways and explain both rules"],
+ N:["Do 5 number-series problems","Total a bill in your head before paying","Estimate a time or distance, then check it","Solve 3 percentage or discount questions","Double and halve numbers in your head for 5 minutes","Write one word problem from daily life and solve it"],
+ W:["Read 10 pages of something slightly hard and note 2 new words","Unjumble 5 words or solve a crossword","Explain one idea aloud for 1 minute without notes","List 5 pairs of opposites and 5 pairs of synonyms","Write a 5-sentence summary of something you read","Play a word chain or word-building game for 10 minutes"],
+ L:["Solve one seating or family-tree puzzle on paper","Play 10 minutes of Sudoku","Take one news claim and list what is proved and what is assumed","Solve 3 'if this, then that' riddles","Plan tomorrow in order and spot which step depends on another","Play chess or draughts and explain one move to yourself"],
+ M:["Memorise a 7-digit number and recall it after 1 minute","Recall your shopping list without looking","Read 5 digits, cover them, say them backwards","Look at a room for 20 seconds, close your eyes, list 10 things","Learn 5 new names or words and recall them at night","Replay your day from morning to now, in order"]},
+J:{
+ P:["Do a jigsaw or tangram for 10 minutes","Look at a simple drawing for 10 seconds, then copy it","Solve a spot-the-difference picture","Build something from blocks using a picture","Find 3 repeating patterns at home and draw them","Sort toys or buttons two different ways"],
+ N:["Skip-count by 2s and 5s up to 50","Count the change at a shop with a parent","Play a dice game and add the numbers in your head","Guess the length of 3 things, then measure them","Solve 3 small sums about sweets or pencils","Halve and double numbers up to 20"],
+ W:["Read aloud for 15 minutes","Unjumble 5 simple words","Tell the story of your day in full sentences","Find 5 pairs of opposites","Learn 2 new words and use them today","Play a word chain game"],
+ L:["Solve a maze","Solve one riddle at dinner","Play noughts and crosses or draughts","Put 5 pictures in order to tell a story","Solve a beginner Sudoku","Answer 3 'what comes next' questions"],
+ M:["Play a card-matching memory game","Look at 10 objects, cover them, name them all","Carry a 3-item shopping list in your head","Say 4 numbers backwards","Retell a story you heard yesterday","Learn a short rhyme by heart"]}};
+
+function practiceSet(k){
+  var set=S.band.set,used={};
+  S.qs.forEach(function(q){used[q.q+"|"+q.o[0]]=1});
+  if(k==="P")return (set==="S"?["latin","altfill",pick(["dbl","dblfill"])]:["count","latin","altfill"]).map(genP);
+  if(k==="N")return (set==="S"?["gaps","x2p1",pick(["sq","add"])]:["jdbl","jdown",pick(["jpen","jbird","jsweet"])]).map(genN);
+  if(k==="M"){
+    var d1=digits(set==="S"?7:4),d2=digits(set==="S"?5:3),ws=take(WORDS,set==="S"?6:4);
+    return [
+      {mem:1,q:"Tap to show the numbers. Look for 5 seconds, tap again to hide them, then write them down in order.",show:d1.join("  ")},
+      {mem:1,q:"Tap to show the numbers. Hide them, then say them backwards.",show:d2.join("  "),e:"Backwards: "+d2.slice().reverse().join(" ")},
+      {mem:1,q:"Tap to show the words. Look for 10 seconds, hide them, then list as many as you can.",show:ws.join(" · ")}
+    ];
+  }
+  var all=[];[1,2,3].forEach(function(d){((POOL[set][k]||{})[d]||[]).forEach(function(q){if(!used[q.q+"|"+q.o[0]])all.push(q)})});
+  return take(all,3);
+}
+function practiceHTML(items){
+  return items.map(function(q,i){
+    if(q.mem)return '<div class="pq"><b>'+(i+1)+". "+esc(q.q)+'</b><details><summary>Show / hide</summary><div class="flash sm">'+esc(q.show)+'</div>'+(q.e?'<p class="note">'+esc(q.e)+'</p>':"")+'</details></div>';
+    var order=shuf(q.o.map(function(_,j){return j})),L="ABCD",right=L[order.indexOf(q.a)];
+    var body=q.t==="matrix"?'<div class="matrix pqm">'+q.grid.map(function(c){return '<div class="cell">'+cellSVG(c)+'</div>'}).join("")+'<div class="cell q" aria-label="missing tile">?</div></div>':
+             q.jum?'<div class="letters">'+q.jum.split("").map(function(c){return "<span>"+c+"</span>"}).join("")+'</div>':"";
+    return '<div class="pq"><b>'+(i+1)+". "+esc(q.q)+'</b>'+body+'<div class="pqo'+(q.t==="matrix"?" sh":"")+'">'+order.map(function(j,p){return '<span><em>'+L[p]+'</em>'+optHTML(q,q.o[j])+'</span>'}).join("")+'</div>'+
+      '<details><summary>Show answer</summary><p><b>'+right+'.</b> '+esc(q.e)+'</p></details></div>';
+  }).join("");
+}
+var PLAN_MILES=[[0,"Tick each day as you finish it. Day 1 is the hardest, and it gets easier."],[1,"Good start. Habits form in the first week, so protect your 15 minutes."],[6,"Week 1 done. Most people stop here. You did not."],[12,"Halfway there. Your growth zone is already getting easier."],[18,"Final stretch. Get ready to retake and compare."],[24,"All 24 days done. Retake Buddhi Score and see what changed."]];
+function planKey(){try{return "buddhi-plan-"+mkCode(S.D)}catch(e){return "buddhi-plan"}}
+function planGet(){try{return JSON.parse(localStorage.getItem(planKey())||"{}")||{}}catch(e){return {}}}
+function planSet(o){try{localStorage.setItem(planKey(),JSON.stringify(o))}catch(e){}}
+function planPaint(){
+  var o=planGet(),n=0;
+  [].forEach.call(document.querySelectorAll("#fullCard input[data-day]"),function(c){c.checked=!!o[c.getAttribute("data-day")];if(c.checked)n++});
+  var p=$("planProg");if(!p)return;
+  p.querySelector("i").style.width=(n/24*100)+"%";
+  $("planN").textContent=n+" of 24 days done";
+  var m=PLAN_MILES[0][1];PLAN_MILES.forEach(function(x){if(n>=x[0])m=x[1]});$("planMsg").textContent=m;
+}
+$("fullCard").addEventListener("change",function(e){
+  var c=e.target;if(!c||!c.getAttribute||!c.getAttribute("data-day"))return;
+  var o=planGet();o[c.getAttribute("data-day")]=c.checked;planSet(o);planPaint();if(c.checked)SFX.tap();
+});
+
 function fullReport(keys,val,best,worst){
-  var n=S.qs.length,order=keys.slice().sort(function(a,b){return val[a]-val[b]}),second=order[1];
-  var prof=PROFILE[val[best]-val[worst]<=15?"A":best];
+  var n=S.qs.length,order=keys.slice().sort(function(a,b){return val[a]-val[b]}),second=order[1],hidden=order[3];
+  var kid=S.band.set==="J",prof=PROFILE[val[best]-val[worst]<=15?"A":best];
   var df={1:[0,0],2:[0,0],3:[0,0]};
   S.qs.forEach(function(q,i){df[q.d][1]++;if(S.ans[i]===q.a)df[q.d][0]++});
   var avg=S.used/n/1000,lim=S.band.secs,acc=R.right/n,fast=avg<lim*.4,outs=S.ans.filter(function(a){return a===null}).length;
@@ -1116,45 +1411,99 @@ function fullReport(keys,val,best,worst){
            ["Method first","You are using the time and still missing questions, so speed is not the issue. Work on the method for your weakest skill before timing yourself."];
   var p2=Math.min(1,(R.got+4)/R.max),iq2=Math.round(Math.max(70,Math.min(140,100+15*(p2-S.band.mean)/S.band.sd)));
   var lvl=function(v){return v>=75?"Strong":v>=40?"Steady":"Growing"};
-  var dn=["","Easy","Medium","Hard"];
-  var h='<div class="card prem"><span class="eyebrow">Full report · unlocked</span><h2>'+prof[0]+'</h2><p>'+prof[1]+'</p></div>';
+  var dn=["","Easy","Medium","Hard"],nm=esc(S.name==="You"?"":S.name);
+  var retake=new Date(Date.now()+28*864e5).toLocaleDateString("en-IN",{day:"numeric",month:"long"});
+  var D=DAYS[S.band.set];
 
-  h+='<div class="card"><h2>Your summary</h2><p>'+esc(S.name)+', your estimated score of <b>'+R.iq+'</b> puts you in the <b>'+bandName(R.iq).toLowerCase()+'</b> band for ages '+S.band.label+'. '+
-     (best===worst||val[best]===val[worst]?"Your five skills came out level.":"Your strongest skill is <b>"+DOMS[best]+"</b> at "+val[best]+"%, and the most room to grow is in <b>"+DOMS[worst]+"</b> at "+val[worst]+"%.")+'</p>'+
-     '<p>'+(iq2>R.iq?"<b>Your next target: "+iq2+".</b> Getting two more medium questions right would lift your estimate from "+R.iq+" to about "+iq2+". The plan below is built to get you there.":"You are at the top of what this short test can measure. The plan below keeps you sharp.")+'</p></div>';
+  /* 1. profile */
+  var dlBtn='<div class="pdfrow noprint"><button type="button" class="btn dark pdfBtn">Download report and plan (PDF)</button><span class="note pdfMsg"></span></div>';
+  var h='<div class="card prem"><span class="eyebrow">Full report · unlocked</span><h2>'+prof[0]+'</h2><p>'+prof[1]+'</p>'+dlBtn+'</div>';
+  h+='<div class="card wcard noprint"><span class="wav" aria-hidden="true">'+$("wBtn").querySelector(".wav").innerHTML+'</span><div><span class="eyebrow">AI-powered chat</span><h3>Discuss your report with Whimsi</h3>'
+    +'<p>Ask what your results mean, why a skill came out lower, or for practice puzzles with hints. 20 messages are included with your purchase.</p>'
+    +'<button type="button" class="btn wOpen">Start the chat</button></div></div>';
 
-  if(S.band.set==="J")h+=parentCard(val,best,worst);
+  /* 2. at a glance */
+  var tile=function(lbl,big,small,k){return '<div class="t4"'+(k?' style="border-top-color:var(--c'+k+')"':"")+'><span>'+lbl+'</span><b>'+big+'</b><em>'+small+'</em></div>'};
+  h+='<div class="card"><h2>Your mind at a glance</h2><div class="tiles4">'+
+     tile("Superpower",DOMS[best],val[best]+"%",best)+tile("Hidden strength",DOMS[hidden],val[hidden]+"%",hidden)+
+     tile("Growth zone",DOMS[worst],val[worst]+"%",worst)+tile("Next target",String(Math.max(iq2,R.iq)),"by "+retake,"")+'</div>'+
+     '<p>'+(nm?nm+", your":"Your")+' estimated score of <b>'+R.iq+'</b> puts you in the <b>'+bandName(R.iq).toLowerCase()+'</b> band for ages '+S.band.label+'. '+
+     (iq2>R.iq?"Getting just two more medium questions right would lift you to about <b>"+iq2+"</b>. Everything below is built to get you there.":"You are at the top of what this short test can measure. The plan below keeps you sharp.")+'</p></div>';
+
+  /* 3. superpower */
+  h+='<div class="card sup" style="border-color:var(--c'+best+')"><div class="skh">'+icon(best)+'<div><span class="eyebrow">Your superpower</span><h2>'+DOMS[best]+'</h2></div></div>'+
+     '<p>'+SK[best].what+' This is the skill you can lean on. Use it on purpose:</p><ul>'+(kid?KID[best].g:USE[best]).map(function(x){return "<li>"+x+"</li>"}).join("")+'</ul>'+
+     '<p class="note">Your hidden strength is <b>'+DOMS[hidden]+'</b>. Pair it with '+DOMS[best]+' and you have two tools most people only have one of.</p></div>';
+
+  if(kid)h+=parentCard(val,best,worst);
+
+  /* 4. skills in depth */
   h+='<div class="card"><h2>Your five skills in depth</h2>'+order.slice().reverse().map(function(k){
     var qs=[];S.qs.forEach(function(q,i){if(q.k===k)qs.push([q.d,S.ans[i]===q.a])});qs.sort(function(a,b){return a[0]-b[0]});
-    return '<div class="sk" style="border-left-color:var(--c'+k+')"><div class="skh">'+ring(k,val[k])+'<div><h3>'+DOMS[k]+'</h3><span class="lv">'+lvl(val[k])+'</span></div></div>'+
+    return '<div class="sk" data-sk="'+k+'" style="border-left-color:var(--c'+k+')"><div class="skh">'+ring(k,val[k])+'<div><h3>'+DOMS[k]+'</h3><span class="lv">'+lvl(val[k])+'</span></div></div>'+
       '<p>'+SK[k].what+'</p><div class="chips">'+qs.map(function(x){return '<span class="'+(x[1]?"ok":"")+'">'+dn[x[0]]+(x[1]?" ✓":" ✕")+'</span>'}).join("")+'</div>'+
       '<p><b>Where you use it:</b> '+SK[k].life+'</p><p><b>How to build it:</b></p><ul>'+SK[k].ex.map(function(e){return "<li>"+e+"</li>"}).join("")+'</ul></div>';
   }).join("")+'</div>';
 
+  /* 5. speed */
   h+='<div class="card"><h2>Speed and difficulty</h2><h3>'+pace[0]+'</h3><p>'+pace[1]+'</p>'+
      '<div class="tchart" role="img" aria-label="Time spent on each question">'+S.qs.map(function(q,i){return '<span class="'+(S.ans[i]===q.a?"":"miss")+'" style="height:'+Math.max(6,Math.round(S.times[i]/(lim*10)))+'%;background:var(--c'+q.k+')" title="Question '+(i+1)+": "+Math.round(S.times[i]/1000)+'s"></span>'}).join("")+'</div>'+
      '<p class="note">One bar per question, in the order you saw them. Taller means you took longer. Faded bars are questions you missed. Average '+Math.round(avg)+'s of the '+lim+'s allowed'+(outs?", and you ran out of time on "+outs+".":".")+'</p>'+
      [1,2,3].map(function(d){var pc=df[d][1]?Math.round(df[d][0]/df[d][1]*100):0;return '<div class="dfr"><span>'+dn[d]+'</span><div class="track"><i style="width:'+pc+'%"></i></div><em>'+df[d][0]+" of "+df[d][1]+'</em></div>'}).join("")+
      '<p>'+(df[1][0]<df[1][1]?"You dropped an easy question. Those are the quickest points to win back: read the question twice before answering.":df[3][0]===df[3][1]?"You cleared every hard question, which is where most people lose marks.":"You are solid on the easy questions. Your points are waiting in the medium and hard ones.")+'</p></div>';
 
-  var wk=function(num,k,title,items){return '<div class="wk"><span class="n" style="background:var(--c'+k+')">Week<b>'+num+'</b></span><div><h3>'+title+'</h3><ul>'+items.map(function(e){return "<li>"+e+"</li>"}).join("")+'</ul></div></div>'};
-  h+='<div class="card"><h2>Your 4-week plan to sharpen your mind</h2><p>Fifteen minutes a day, six days a week. The plan starts with '+DOMS[worst]+' because that is where practice will move your score most.</p>'+
-     '<div class="routine"><div><b>5 min</b>Warm up with a memory drill</div><div><b>8 min</b>Work on the week\'s focus skill</div><div><b>2 min</b>Review what you got wrong and why</div></div>'+
-     '<div class="plan4">'+
-     wk(1,worst,"Build the habit: "+DOMS[worst],[SK[worst].ex[0],SK[worst].ex[2],"No timer this week. Aim to understand every mistake."])+
-     wk(2,worst,"Add the clock: "+DOMS[worst],[SK[worst].ex[1],"Give yourself "+lim+" seconds per problem, the same as the test","Keep a count of how many you get right each day"])+
-     wk(3,second,"Second skill: "+DOMS[second],[SK[second].ex[0],SK[second].ex[1],"Keep five minutes a day on "+DOMS[worst]+" so it does not fade"])+
-     wk(4,best,"Mix and retest",["Rotate all five skills, one per day","Do one full timed set of 10 mixed problems midweek","Retake Buddhi Score at the end of the week and compare the two reports"])+
-     '</div><h3>Habits that support thinking</h3><div class="habits"><div><b>Sleep 7 to 8 hours</b>Memory and attention drop sharply when you are short of sleep.</div><div><b>Move for 30 minutes</b>A brisk daily walk is linked with better focus and memory.</div><div><b>Read every day</b>Steady reading builds vocabulary and general knowledge.</div><div><b>Learn something hard</b>A language, an instrument or chess keeps you solving unfamiliar problems.</div></div>'+
-     '<p class="note">Practice reliably improves the skills you practise and your results on tests like this one. Whether it raises underlying intelligence is still debated by researchers, so treat a higher score as sharper skills, not a new brain.</p></div>';
+  /* 6. practice now */
+  h+='<div class="card"><h2>Practice now: '+DOMS[worst]+'</h2><p>Three fresh questions on your growth zone, new every time you open this report. Try each one before you tap the answer.</p><div class="pqs">'+practiceHTML(practiceSet(worst))+'</div></div>';
 
+  /* 7. 4-week plan with tracker */
+  var wk=function(num,k,title,goal,tasks){return '<div class="wk2" style="border-top-color:var(--c'+k+')"><div class="wkh"><span class="n" style="background:var(--c'+k+')">Week<b>'+num+'</b></span><div><h3>'+title+'</h3><p class="note">'+goal+'</p></div></div><div class="days">'+
+    tasks.map(function(t,i){var id="w"+num+"d"+(i+1);return '<label class="day" for="'+id+'"><input type="checkbox" id="'+id+'" data-day="'+id+'"><span><em>Day '+(i+1)+'</em>'+t+'</span></label>'}).join("")+'</div></div>'};
+  var mix=["P","N","W","L","M"].map(function(k){return D[k][1]+" ("+DOMS[k]+")"});mix.push("Retake Buddhi Score and compare your two reports");
+  h+='<div class="card"><h2>Your 4-week plan</h2><p>Fifteen minutes a day, six days a week. It starts with <b>'+DOMS[worst]+'</b> because that is where practice moves your score most. Tick each day as you finish it.</p>'+
+     '<div class="prog" id="planProg"><div class="track"><i></i></div><div class="progt"><b id="planN">0 of 24 days done</b><span id="planMsg"></span></div></div>'+
+     '<div class="routine"><div><b>5 min</b>Warm up with a memory drill</div><div><b>8 min</b>The day\'s task below</div><div><b>2 min</b>Review what went wrong and why</div></div>'+
+     '<div class="plan4">'+
+     wk(1,worst,"Build the habit: "+DOMS[worst],"No timer. Aim to understand every mistake.",D[worst])+
+     wk(2,worst,"Add the clock: "+DOMS[worst],kid?"Same skill, now try to beat a timer. Make it a game.":"Same skill, now against a timer: aim for "+lim+" seconds per puzzle, like the test.",D[worst].slice(3).concat(D[worst].slice(0,3)))+
+     wk(3,second,"Level up: "+DOMS[second],"Your next skill to grow. Keep 3 minutes a day on "+DOMS[worst]+".",D[second])+
+     wk(4,best,"Mix and retest","One skill a day, then see how far you have come.",mix)+
+     '</div><p class="note">Your ticks are saved on this device.</p></div>';
+
+  /* 8. habits */
+  var sleep=kid?"9 to 12 hours":S.band.id==="13-17"?"8 to 10 hours":"7 to 9 hours",move=kid?"60 minutes of active play":"30 minutes of movement";
+  h+='<div class="card"><h2>Habits that feed your brain</h2><div class="habits">'+
+     '<div><b>Sleep '+sleep+'</b>Memory and attention drop sharply when you are short of sleep. Practise in the day, sleep on it.</div>'+
+     '<div><b>'+move.charAt(0).toUpperCase()+move.slice(1)+'</b>Regular physical activity is linked with better focus and memory.</div>'+
+     '<div><b>Read every day</b>Steady reading builds vocabulary, knowledge and the patience for hard problems.</div>'+
+     '<div><b>Learn something hard</b>A language, an instrument or chess keeps you solving unfamiliar problems.</div>'+
+     '<div><b>One thing at a time</b>Switching tasks costs focus. Put the phone in another room while you practise.</div>'+
+     '<div><b>Two calm minutes</b>A short pause of slow breathing before practice helps settle a busy mind.</div>'+
+     '</div><p class="note">Practice reliably improves the skills you practise and your results on tests like this one. Whether it raises underlying intelligence is still debated by researchers, so treat a higher score as sharper skills, not a new brain.</p></div>';
+
+  /* 9. careers */
   h+=fitCard(val,order);
+
+  /* 10. motivation */
+  var mot=R.iq>=120?["A sharp mind. Now make it a habit.","You scored higher than most people your age. The risk at this level is coasting: skills you stop using do get rusty. Use the plan to stretch your growth zone, so your strengths do not have to carry you alone."]:
+          R.iq>=90?["You are closer to your next level than you think.","Most people score in this range, and it is the range where practice shows fastest. A few more correct answers in your growth zone would move you up a band, and fifteen minutes a day is enough to get them."]:
+          ["This is a starting line, not a label.","A short test on one day measures how you did today, not what you are capable of. Sleep, mood, focus and familiarity with this kind of puzzle all move the score. People who practise these question types usually improve quickly, so your biggest gains are still ahead of you."];
+  var age=kid?"For young minds, every new puzzle, story and game builds thinking skills. Keep it playful: curiosity grows faster under encouragement than under pressure.":
+          S.band.id==="13-17"?"These are the same skills that school exams and entrance tests reward. Fifteen minutes a day now pays off in every subject.":
+          S.band.id==="60+"?"Keeping your mind busy with puzzles, reading, learning and conversation is one of the most rewarding habits you can keep, and research links an active mind with healthier ageing.":
+          "At work and at home these skills show up as quicker decisions, clearer writing and spotting what others miss. They respond to practice at every age.";
+  h+='<div class="card letter"><span class="eyebrow">A note for '+(nm||"you")+'</span><h2>'+mot[0]+'</h2><p>'+mot[1]+'</p><p>'+age+'</p>'+
+     '<div class="mantra"><span lang="sa">योगः कर्मसु कौशलम्</span><b>Yoga is skill in action.</b><small>Bhagavad Gita 2.50</small></div>'+
+     '<p><b>Your 28-day challenge:</b> follow the plan above and retake Buddhi Score on <b>'+retake+'</b>. Then put your two reports side by side.</p></div>';
+  h+='<div class="card gift" id="codeCard" hidden><span class="eyebrow">Your reward</span><h2>Your next full report for ₹29</h2><p>Thank you for unlocking your report. This one-time code brings your next full report down from ₹49 to ₹29. Use it for your 28-day retake, or gift it to a friend.</p><div class="codebox"><b id="codeV"></b><button type="button" class="btn dark noprint" id="codeCopy">Copy code</button></div><p class="note" id="codeExp"></p></div>';
+
+  /* 11. answers */
   h+='<div class="card"><h2>Every answer explained</h2><div class="rev">'+S.qs.map(function(q,i){
     var a=S.ans[i],ok=a===q.a,extra=q.t==="mem"?" ("+q.show.replace(/\s+/g," ")+")":q.jum?" ("+q.jum.split("").join(" ")+")":"";
     return '<div><b>'+(i+1)+". "+esc(q.q+extra)+'</b>'+
       '<span class="'+(ok?"ok":"no")+'">'+(ok?"Correct":a===null?"Ran out of time":"Your answer: "+optHTML(q,q.o[a]))+' · '+Math.round(S.times[i]/1000)+'s</span>'+
       (ok?"":'<span>Right answer: '+optHTML(q,q.o[q.a])+'</span>')+'<span class="note">'+DOMS[q.k]+" · "+dn[q.d]+". "+esc(q.e)+'</span></div>';
   }).join("")+'</div></div>';
+  h+='<div class="card dl noprint"><span class="eyebrow">Keep a copy</span><h2>Save your report and plan</h2><p>Download everything above as a PDF to print, keep or share. Your ticks and your ₹29 code are included.</p>'+dlBtn+'</div>';
   return h;
 }
 
@@ -1198,7 +1547,7 @@ function paint(D,shared){
       '<div class="tr"><i style="left:'+pos(r[2])+'%;width:'+(pos(r[3])-pos(r[2]))+'%;background:'+r[5]+'"></i>'+(i?'<u style="left:'+pos(D.iq)+'%"></u>':"")+'</div><small>'+r[6]+'</small></div></div>';
   }).join("");
   radar($("rRadar"),val);
-  brain($("rBrain"),$("rBrainL"),val,best);
+  brain($("rBrain"),$("rBrainL"),val,best,shared);
   $("rBars").innerHTML=keys.map(function(k){
     return '<div class="bar">'+icon(k,true)+'<span>'+DOMS[k]+'</span><div class="track"><i style="width:0;background:var(--c'+k+')" data-w="'+val[k]+'"></i></div><em>'+val[k]+'%</em></div>';
   }).join("");
@@ -1216,14 +1565,15 @@ function paint(D,shared){
 }
 function ownMode(){
   $("sharedBar").hidden=true;$("glanceCard").hidden=false;$("shareCard").hidden=false;
-  $("lockCard").hidden=!!S.unlocked;$("fullCard").hidden=!S.unlocked;
+  $("lockCard").hidden=!!S.unlocked;$("fullCard").hidden=!S.unlocked;$("lockWhy").hidden=true;
   $("again").textContent="Take it again with new questions";
   var txt=encodeURIComponent(shareText(S.D));
   $("waBtn").href="https://wa.me/?text="+txt;$("smsBtn").href="sms:?&body="+txt;
   $("shareNote").textContent=siteLink("x")?"Your friend gets a link that opens a summary of this report, with a button to take the test.":"The message carries your score and strongest skill.";
+  wPaint();
 }
 function showShared(D,preview){
-  S.preview=!!preview;
+  S.preview=!!preview;setAge(D.band);
   $("sharedBar").hidden=false;$("glanceCard").hidden=true;$("shareCard").hidden=true;$("lockCard").hidden=true;$("fullCard").hidden=true;
   $("sharedT").textContent=(D.name==="Friend"||D.name==="You"?"A friend":D.name)+" scored "+D.iq+". Can you beat it?";
   $("sharedGo").textContent=preview?"Back to my report":"Take the test yourself";
@@ -1231,6 +1581,7 @@ function showShared(D,preview){
   show("report");paint(D,true);
 }
 function finish(quiet){
+  if(!quiet)S.myCode=null;
   R=score();
   var keys=Object.keys(DOMS),val={},best=keys[0],worst=keys[0],mins=Math.max(1,Math.round(S.used/60000));
   keys.forEach(function(k){val[k]=Math.round(R.dom[k].g/R.dom[k].m*100);if(val[k]>val[best])best=k;if(val[k]<val[worst])worst=k});
@@ -1241,23 +1592,183 @@ function finish(quiet){
   $("rTiles").innerHTML="<div><b>"+R.right+"/"+S.qs.length+"</b><span>correct</span></div><div><b>"+mins+" min</b><span>time taken</span></div><div><b>"+Math.round(S.used/1000/S.qs.length)+"s</b><span>per question</span></div>";
   $("rStrip").innerHTML=S.qs.map(function(q,i){var ok=S.ans[i]===q.a;
     return '<span class="'+(ok?"on":"")+'" style="border-color:var(--c'+q.k+');'+(ok?"background:var(--c"+q.k+");":"")+'animation-delay:'+(i*40)+'ms" title="'+DOMS[q.k]+", "+(ok?"correct":"missed")+'">'+(i+1)+'</span>'}).join("");
-  $("fullCard").innerHTML=fullReport(keys,val,best,worst);
+  $("fullCard").innerHTML=fullReport(keys,val,best,worst);planPaint();paintCode();couponReset();
   ownMode();show("report");paint(S.D,false);
-  try{location.hash=mkCode(S.D)}catch(e){}
+  try{history[history.state&&history.state.bs?"replaceState":"pushState"]({bs:1},"","#"+mkCode(S.D))}catch(e){}
   if(!quiet){S.order=null;S.pay=null;saveState();confetti();SFX.win()}
 }
 (function(){
   var open=function(){var d=parseCode(location.hash);if(d&&(!S.D||mkCode(S.D)!==location.hash.replace("#","")))showShared(d,false)};
   window.addEventListener("hashchange",open);open();
 })();
-$("sharedGo").onclick=function(){SFX.tap();
-  if(S.preview){S.preview=false;ownMode();show("report");paint(S.D,false)}
-  else{try{location.hash=""}catch(e){}show("start")}};
-$("previewBtn").onclick=function(){SFX.tap();showShared(S.D,true)};
+/* Back: the on-screen button, the phone's back gesture and "Take the test yourself" all go one screen back.
+   The quiz, report and friend preview each add a history entry, so the phone's back button stays inside the site. */
+function mark(){try{history.pushState({bs:1},"")}catch(e){}}
+function leaveQuiz(){
+  var t=Date.now(),ok=confirm("Leave the test? Your answers so far will be lost.");
+  t=Date.now()-t;
+  if(ok)stopTimer();else{S.t0+=t;if(S.shift)S.shift(t)}
+  return ok;
+}
+function goBack(){
+  if(S.preview){S.preview=false;setAge(S.band);ownMode();show("report");paint(S.D,false);return}
+  stopTimer();setAge(S.band);
+  try{history.replaceState(null,"",location.pathname+location.search)}catch(e){}
+  show("start");offerResume();
+  if(!OM.userOff&&!MUTE)omStart();
+}
+function back(){
+  if(!$("quiz").hidden&&!leaveQuiz())return;
+  var st=null;try{st=history.state}catch(e){}
+  if(st&&st.bs)history.back();else goBack();
+}
+window.addEventListener("popstate",function(){
+  if(!$("start").hidden)return;
+  if(!$("quiz").hidden&&!leaveQuiz()){mark();return}
+  goBack();
+});
+$("back").onclick=function(){SFX.tap();back()};
+$("sharedGo").onclick=function(){SFX.tap();back()};
+$("previewBtn").onclick=function(){SFX.tap();mark();showShared(S.D,true)};
+
+/* ---------- one-time ₹29 codes: shared screen code ---------- */
+function fmtDay(iso){try{return new Date(iso).toLocaleDateString("en-IN",{day:"numeric",month:"long",year:"numeric"})}catch(e){return ""}}
+function savedCode(){try{var o=JSON.parse(localStorage.getItem("buddhi-code")||"null");if(o&&o.code&&!o.used&&(!o.exp||new Date(o.exp)>new Date()))return o}catch(e){}return null}
+function keepCode(m){try{if(m)localStorage.setItem("buddhi-code",JSON.stringify(m));else localStorage.removeItem("buddhi-code")}catch(e){}}
+function takeCodeResult(j){
+  if(!j)return;
+  var sc=savedCode();
+  if(j.redeemed&&sc&&sc.code===j.redeemed)keepCode(null);
+  if(j.code){S.myCode={code:j.code,exp:j.code_expires||null,used:!!j.code_used,demo:!!j.demo};if(!j.code_used)keepCode({code:j.code,exp:j.code_expires||null})}
+  paintCode();
+}
+function paintCode(){
+  var c=$("codeCard");if(!c)return;var m=S.myCode;
+  if(!m||!m.code){c.hidden=true;return}
+  c.hidden=false;$("codeV").textContent=m.code;
+  $("codeExp").textContent=m.used?"This code has already been used.":(m.exp?"Valid until "+fmtDay(m.exp)+". ":"")+"One-time use. After your next test, tap Have a Buddhi Score code? on the unlock card and enter it."+(m.demo?" This is a sample code in the preview; real codes are created on buddhiscore.in.":"");
+}
+function couponPaint(){
+  var s=$("unlockSub");if(!s)return;
+  s.innerHTML=S.coupon?'Full report, AI chat and 4-week plan · <s>₹49</s> ₹'+Math.round((S.couponAmt||2900)/100)+' with your code':"Full report, AI chat and 4-week plan · ₹49";
+  $("couponRemove").hidden=!S.coupon;$("couponApply").hidden=!!S.coupon;$("couponIn").disabled=!!S.coupon;
+}
+function couponReset(){
+  S.coupon=null;S.couponAmt=0;$("couponMsg").textContent="";$("couponIn").value="";$("couponRow").hidden=true;
+  var sc=savedCode();
+  if(sc&&!(S.myCode&&S.myCode.code===sc.code)){$("couponIn").value=sc.code;$("couponRow").hidden=false;$("couponMsg").textContent="You have a ₹29 code saved on this device. Tap Apply to use it."}
+  couponPaint();
+}
+$("couponToggle").onclick=function(){SFX.tap();$("couponRow").hidden=!$("couponRow").hidden;if(!$("couponRow").hidden)try{$("couponIn").focus()}catch(e){}};
+$("couponApply").onclick=function(){
+  var v=$("couponIn").value.trim();SFX.tap();
+  if(!v){$("couponMsg").textContent="Type your code first. It starts with BS.";return}
+  $("couponMsg").textContent="Checking your code…";
+  PAYAPI.check(v).then(function(j){S.coupon=j.code||v;S.couponAmt=j.amount||2900;$("couponIn").value=S.coupon;$("couponMsg").textContent="Code applied. Your full report is now ₹"+Math.round(S.couponAmt/100)+".";couponPaint()})
+    .catch(function(e){S.coupon=null;couponPaint();$("couponMsg").textContent=e.message||"That code could not be checked. Try again."});
+};
+$("couponRemove").onclick=function(){SFX.tap();S.coupon=null;S.couponAmt=0;$("couponMsg").textContent="Code removed.";couponPaint()};
+$("couponIn").addEventListener("keydown",function(e){if(e.key==="Enter"){e.preventDefault();$("couponApply").click()}});
+
+/* ---------- download the report and plan as a PDF ---------- */
+var PDFJS=["https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js","https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"];
+var PDF_BUSY=false,PDF_LABEL="Download report and plan (PDF)";
+function loadJS(src){return new Promise(function(res,rej){var s=document.createElement("script");s.src=src;s.onload=function(){res()};s.onerror=function(){rej(new Error("load"))};document.head.appendChild(s)})}
+function pdfStatus(t,msg){[].forEach.call(document.querySelectorAll(".pdfBtn"),function(b){b.textContent=t});if(msg!=null)[].forEach.call(document.querySelectorAll(".pdfMsg"),function(m){m.textContent=msg})}
+var SVGP=["fill","fill-opacity","stroke","stroke-width","stroke-opacity","stroke-linecap","stroke-linejoin","stroke-dasharray","opacity","font-family","font-size","font-weight","letter-spacing","text-anchor"];
+function inlineSvg(root){
+  [].forEach.call(root.querySelectorAll("svg"),function(svg){
+    var r=svg.getBoundingClientRect();if(!r.width)return;var rcs=getComputedStyle(svg),rootExtra=";display:"+rcs.display+";vertical-align:"+rcs.verticalAlign+";width:"+r.width+"px;height:"+r.height+"px";
+    var all=[svg].concat([].slice.call(svg.querySelectorAll("*"))),styles=all.map(function(el){var cs=getComputedStyle(el);return SVGP.map(function(p){var v=cs.getPropertyValue(p);return v?p+":"+v:""}).filter(Boolean).join(";")});
+    all.forEach(function(el,i){
+      var m=el.style&&el.style.transform&&/rotate\((-?[\d.]+)deg\)/.exec(el.style.transform);
+      if(m){var o=(el.style.transformOrigin||"0px 0px").replace(/px/g,"").split(" ");el.setAttribute("transform","rotate("+m[1]+" "+(o[0]||0)+" "+(o[1]||0)+")")}
+      el.setAttribute("style",styles[i]+(i?"":rootExtra));
+    });
+    svg.setAttribute("width",r.width);svg.setAttribute("height",r.height);
+  });
+}
+function cleanClone(c){
+  [].forEach.call(c.querySelectorAll(".noprint,button"),function(x){x.remove()});
+  [].forEach.call(c.querySelectorAll("details"),function(d){d.setAttribute("open","")});
+  [c].concat([].slice.call(c.querySelectorAll("[id]"))).forEach(function(x){if(!(x instanceof SVGElement))x.removeAttribute("id")});
+  c.removeAttribute("hidden");return c;
+}
+function splitBlocks(el,max,out){
+  var h=el.getBoundingClientRect().height;
+  if(h<=max||!el.children.length||el.tagName.toLowerCase()==="svg"){out.push({el:el,h:Math.min(h,max)});return}
+  [].forEach.call(el.children,function(ch){splitBlocks(ch,max,out)});
+}
+function wrapChain(el,root){
+  var node=el.cloneNode(true),p=el.parentNode;
+  while(p&&p!==root){var w=p.cloneNode(false);w.classList.add("split");w.appendChild(node);node=w;p=p.parentNode}
+  return node;
+}
+function buildPDF(){
+  var W=760,H=1075,MAX=H-40-46,GAP=12;
+  var doc=document.createElement("div");doc.className="pdfdoc";doc.setAttribute("aria-hidden","true");document.body.appendChild(doc);
+  [].forEach.call(document.querySelectorAll("#report input[type=checkbox]"),function(c){if(c.checked)c.setAttribute("checked","");else c.removeAttribute("checked")});
+  var meas=document.createElement("div");meas.className="pmeas";doc.appendChild(meas);
+  var head=document.createElement("div");head.className="phead";
+  var brand=document.querySelector("header.bar .brand");
+  head.innerHTML=(brand?brand.outerHTML:"<b>Buddhi Score</b>")+'<div><b>Brain report and practice plan</b><span>'+esc((S.D.name==="You"?"":S.D.name+" · ")+"Age "+S.D.band.label+" · "+S.D.date)+'</span></div>';
+  meas.appendChild(head);
+  var src=[].filter.call($("report").children,function(el){return el.classList.contains("card")&&!el.hidden&&["sharedBar","shareCard","lockCard"].indexOf(el.id)<0});
+  src.concat([].filter.call($("fullCard").children,function(el){return !el.hidden&&!el.classList.contains("noprint")})).forEach(function(el){meas.appendChild(cleanClone(el.cloneNode(true)))});
+  var HEADISH=function(e){return /^H[1-4]$/.test(e.tagName)||["wkh","skh","eyebrow"].some(function(c){return e.classList.contains(c)})};
+  var NOSPLIT=["sk","pq","t4","fmr","bl","day","codebox","mantra","habits","tiles4","tiles","strip","dots","stand","tchart","prog","routine","dfr","insight","fitc","letters","matrix","phead","heroR","pqo","chips","tags","prem"];
+  var canSplit=function(el){if(el.tagName.toLowerCase()==="svg"||!el.children.length)return false;for(var i=0;i<NOSPLIT.length;i++)if(el.classList.contains(NOSPLIT[i]))return false;return el.getBoundingClientRect().height>140};
+  var groupsOf=function(el){var out=[],ch=[].slice.call(el.children);for(var i=0;i<ch.length;i++){if(HEADISH(ch[i])&&ch[i+1]){out.push([ch[i],ch[i+1]]);i++}else out.push([ch[i]])}return out};
+  var wrapGroup=function(g){var p=g[0].parentNode,nodes=g.map(function(e){return e.cloneNode(true)});
+    while(p&&p!==meas){var w=p.cloneNode(false);w.classList.add("split");nodes.forEach(function(n){w.appendChild(n)});nodes=[w];p=p.parentNode}return nodes};
+  var sheets=[],cur;
+  var newSheet=function(){cur=document.createElement("div");cur.className="sheet";doc.appendChild(cur);sheets.push(cur)};
+  var fits=function(){var l=cur.lastElementChild;if(!l)return true;var t=cur.getBoundingClientRect().top,b=0;[].forEach.call(cur.querySelectorAll("*"),function(x){var r=x.getBoundingClientRect();if(r.height&&r.bottom>b)b=r.bottom});return b-t<=H-78};
+  newSheet();
+  var queue=[].slice.call(meas.children).map(function(e){return [e]}),guard=0;
+  while(queue.length&&guard++<4000){
+    var g=queue.shift(),nodes=wrapGroup(g);
+    nodes.forEach(function(n){cur.appendChild(n)});
+    if(fits())continue;
+    nodes.forEach(function(n){cur.removeChild(n)});
+    var empty=!cur.children.length;
+    if(g.length===1&&canSplit(g[0])){queue=groupsOf(g[0]).concat(queue);continue}
+    if(!empty){newSheet();queue.unshift(g);continue}
+    if(g.length>1){queue=g.map(function(e){return [e]}).concat(queue);continue}
+    wrapGroup(g).forEach(function(n){cur.appendChild(n)});
+  }
+  meas.remove();
+  sheets.forEach(function(s,i){var f=document.createElement("div");f.className="pfoot";f.innerHTML="<span>buddhiscore.in · A practice estimate, not a clinical IQ assessment</span><span>Page "+(i+1)+" of "+sheets.length+"</span>";s.appendChild(f);inlineSvg(s)});
+  var pdf=new window.jspdf.jsPDF({unit:"mm",format:"a4",compress:true}),chain=Promise.resolve();
+  sheets.forEach(function(s,i){chain=chain.then(function(){
+    pdfStatus("Preparing your PDF… "+(i+1)+" of "+sheets.length);
+    return window.html2canvas(s,{scale:1.6,backgroundColor:"#ffffff",logging:false,useCORS:true,ignoreElements:function(e){return e.id==="start"||e.id==="quiz"||e.id==="confetti"}})
+      .then(function(cv){if(i)pdf.addPage();pdf.addImage(cv.toDataURL("image/jpeg",0.86),"JPEG",0,0,210,297,undefined,"FAST")});
+  })});
+  var fname="BuddhiScore-"+((S.D.name&&S.D.name!=="You")?S.D.name.replace(/[^A-Za-z0-9]+/g,"")+"-":"")+"Report.pdf";
+  return chain.then(function(){doc.remove();pdf.save(fname)},function(e){doc.remove();throw e});
+}
+function makePDF(){
+  if(PDF_BUSY)return;
+  var framed=false;try{framed=window.top!==window}catch(e){framed=true}
+  if(framed){pdfStatus(PDF_LABEL,"Downloads are blocked inside this preview. On buddhiscore.in this button saves the PDF.");return}
+  PDF_BUSY=true;SFX.tap();pdfStatus("Preparing your PDF…","");
+  var need=[];if(!window.html2canvas)need.push(loadJS(PDFJS[0]));if(!(window.jspdf&&window.jspdf.jsPDF))need.push(loadJS(PDFJS[1]));
+  Promise.all(need).then(buildPDF).then(function(){PDF_BUSY=false;pdfStatus("Download again","Saved. Look in your Downloads. If nothing appeared, open buddhiscore.in in Chrome or Safari and try again.")})
+    .catch(function(){PDF_BUSY=false;pdfStatus(PDF_LABEL,"The PDF could not be made here. Check your internet, or open buddhiscore.in in Chrome or Safari and try again.")});
+}
+$("fullCard").addEventListener("click",function(e){
+  var t=e.target&&e.target.closest?e.target.closest(".pdfBtn,#codeCopy,.wOpen"):null;if(!t)return;
+  if(t.classList.contains("wOpen")){SFX.tap();wOpen();return}
+  if(t.id==="codeCopy"){var b=t,done=function(m){b.textContent=m;setTimeout(function(){b.textContent="Copy code"},1800)};SFX.tap();
+    try{navigator.clipboard.writeText(S.myCode.code).then(function(){done("Copied")},function(){done("Copy not allowed")})}catch(x){done("Copy not allowed")}return}
+  makePDF();
+});
 
 /* ---------- payments (Razorpay) and saved reports ---------- */
 var PAY={busy:false};
-function saveState(){try{localStorage.setItem("buddhi-last",JSON.stringify({v:1,band:S.band.id,name:S.name,qs:S.qs,ans:S.ans,times:S.times,used:S.used,order:S.order||null,pay:S.pay||null}))}catch(e){}}
+var PAYAPI={check:function(v){return api("/api/check-code",{code:v})}};
+function saveState(){try{localStorage.setItem("buddhi-last",JSON.stringify({v:1,band:S.band.id,name:S.name,qs:S.qs,ans:S.ans,times:S.times,used:S.used,order:S.order||null,pay:S.pay||null,myCode:S.myCode||null}))}catch(e){}}
 function loadState(){try{var o=JSON.parse(localStorage.getItem("buddhi-last")||"null");if(o&&o.v===1&&Array.isArray(o.qs)&&o.qs.length&&Array.isArray(o.ans)&&o.ans.length===o.qs.length)return o}catch(e){}return null}
 function payMsg(title,body,retry){$("payT").textContent=title;$("payB").textContent=body;$("payRetry").hidden=!retry;$("payClose").hidden=!retry;$("payModal").hidden=false}
 function api(path,body){
@@ -1273,9 +1784,9 @@ function loadCheckout(){
     document.head.appendChild(s);
   });
 }
-function unlockNow(){
-  PAY.busy=false;S.unlocked=true;saveState();SFX.unlock();
-  $("payModal").hidden=true;$("lockCard").hidden=true;$("fullCard").hidden=false;
+function unlockNow(j){
+  PAY.busy=false;S.unlocked=true;S.coupon=null;takeCodeResult(j);saveState();SFX.unlock();
+  $("payModal").hidden=true;$("lockCard").hidden=true;$("fullCard").hidden=false;wPaint();
   $("fullCard").scrollIntoView({behavior:CALM?"auto":"smooth",block:"start"});
 }
 function checkPaid(){
@@ -1286,7 +1797,7 @@ function checkPaid(){
 function startPay(){
   if(PAY.busy)return;PAY.busy=true;
   payMsg("Opening secure checkout","One moment.",false);
-  Promise.all([api("/api/create-order",{}),loadCheckout()]).then(function(r){
+  Promise.all([api("/api/create-order",{code:S.coupon||""}),loadCheckout()]).then(function(r){
     var o=r[0];S.order=o.order_id;S.pay=null;saveState();
     $("payModal").hidden=true;
     var rz=new window.Razorpay({key:o.key_id,order_id:o.order_id,amount:o.amount,currency:"INR",name:"Buddhi Score",description:"Full report",
@@ -1309,21 +1820,91 @@ function tryUnlock(){
 $("unlock").onclick=function(){SFX.tap();tryUnlock()};
 $("payRetry").onclick=function(){SFX.tap();tryUnlock()};
 $("payClose").onclick=function(){$("payModal").hidden=true};
-/* A report from an earlier visit is kept on this device, so a paid report survives a reload or a switch to a UPI app. */
-(function(){
+
+/* ---------- Whimsi: the AI thinking buddy that comes with the full report ----------
+   Replies stream from /api/whimsi as plain text. The server checks the payment and counts messages.
+   The chat is kept on this device only, per order. The name typed before the test is never sent. */
+var W={order:null,msgs:[],left:null,busy:false};
+function wOrder(){return (S.pay&&S.pay.razorpay_order_id)||S.order||null}
+function wReady(){return !!(S.unlocked&&!S.preview&&wOrder()&&!$("report").hidden&&$("sharedBar").hidden)}
+function wPaint(){
+  var on=wReady();if(!on)$("whimsi").hidden=true;
+  $("wBtn").hidden=!on||!$("whimsi").hidden;document.body.classList.toggle("wOn",on);
+}
+function wLoad(){
+  var k=wOrder();if(W.order===k)return;
+  W.order=k;W.msgs=[];W.left=null;
+  try{var o=JSON.parse(localStorage.getItem("buddhi-whimsi")||"null");if(o&&o.order===k&&Array.isArray(o.msgs)){W.msgs=o.msgs;W.left=typeof o.left==="number"?o.left:null}}catch(e){}
+}
+function wSave(){try{localStorage.setItem("buddhi-whimsi",JSON.stringify({order:W.order,msgs:W.msgs.slice(-40),left:W.left}))}catch(e){}}
+function wTidy(t){return t.replace(/\*\*|__/g,"").replace(/^#{1,6}\s*/gm,"")}
+function wScroll(){var l=$("wLog");l.scrollTop=l.scrollHeight}
+function wAdd(cls,text){var d=document.createElement("div");d.className="wm "+cls;d.textContent=text;$("wLog").appendChild(d);wScroll();return d}
+function wWeak(){var v=(S.D&&S.D.val)||{},k=Object.keys(DOMS),w=k[0];k.forEach(function(x){if((v[x]||0)<(v[w]||0))w=x});return DOMS[w]}
+function wHead(){$("wLeft").textContent="AI-powered · "+(W.left==null?"20 messages per report":W.left===1?"1 message left":W.left+" messages left")}
+function wRender(){
+  var kid=AGE==="kids",weak=wWeak();
+  $("wLog").innerHTML="";
+  wAdd("a",kid?"Hi! I'm Whimsi, your thinking buddy. I can tell you about your report or give you a fun puzzle. What would you like?"
+    :"Hi, I'm Whimsi, your thinking buddy. Ask me about your report, or ask for a practice puzzle. Your "+weak+" score has the most room to grow, so we could start there.");
+  W.msgs.forEach(function(m){wAdd(m.role==="user"?"u":"a",m.role==="user"?m.content:wTidy(m.content))});
+  $("wSug").innerHTML="";
+  (kid?["What does my score mean?","Give me a fun puzzle!","How can I get better at "+weak+"?"]
+      :["What does my score mean?","Give me a "+weak+" puzzle","What is my superpower?","How do I improve fastest?"]).forEach(function(s){
+    var b=document.createElement("button");b.type="button";b.textContent=s;b.onclick=function(){wSend(s)};$("wSug").appendChild(b)});
+  $("wSug").hidden=W.msgs.length>0;
+  $("wFoot").textContent=kid?"Whimsi is a computer helper, not a person. Keep a grown-up nearby while you chat.":"Whimsi is an AI and can make mistakes. Your name is never sent.";
+  wHead();
+}
+function wOpen(){wLoad();wRender();$("whimsi").hidden=false;wPaint();if(window.matchMedia&&matchMedia("(pointer:fine)").matches)try{$("wIn").focus()}catch(e){}}
+function wClose(){$("whimsi").hidden=true;wPaint();try{$("wBtn").focus()}catch(e){}}
+function wSend(text){
+  text=String(text||"").trim().slice(0,500);if(!text||W.busy)return;
+  if(W.left===0){wAdd("note","You have used all your Whimsi messages for this report.");return}
+  W.busy=true;$("wSend").disabled=true;$("wIn").value="";$("wSug").hidden=true;SFX.tap();
+  W.msgs.push({role:"user",content:text});
+  var ub=wAdd("u",text),bub=wAdd("a wait","•••"),reply=null;
+  fetch("/api/whimsi",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({
+    pay:S.pay||{razorpay_order_id:S.order},
+    report:{band:S.band&&S.band.id,iq:S.D.iq,skills:S.D.val,right:S.D.right,n:S.D.n,mins:S.D.mins},
+    messages:W.msgs})})
+  .then(function(r){
+    if(!r.ok)return r.json().catch(function(){return {}}).then(function(j){if(j.left===0)W.left=0;throw new Error(j.error||"Whimsi could not answer just now. Please try again.")});
+    var left=parseInt(r.headers.get("X-Whimsi-Left"),10);if(!isNaN(left))W.left=left;
+    reply={role:"assistant",content:""};W.msgs.push(reply);
+    var add=function(t){reply.content+=t;bub.textContent=wTidy(reply.content);bub.className="wm a";wScroll()};
+    if(!r.body||!r.body.getReader)return r.text().then(add);
+    var rd=r.body.getReader(),dec=new TextDecoder();
+    return (function pump(){return rd.read().then(function(x){if(x.done)return;add(dec.decode(x.value,{stream:true}));return pump()})})();
+  })
+  .then(function(){if(!reply.content.trim()){W.msgs.pop();bub.className="wm note";bub.textContent="No answer came back. Please try again."}})
+  .catch(function(e){
+    if(!(reply&&reply.content)){if(reply)W.msgs.pop();W.msgs.pop();ub.remove();$("wIn").value=text}
+    bub.className="wm note";bub.textContent=e.message||"Whimsi could not answer just now. Please try again.";
+  })
+  .then(function(){W.busy=false;$("wSend").disabled=false;wHead();wSave();wScroll()});
+}
+$("wBtn").onclick=function(){SFX.tap();wOpen()};
+$("wClose").onclick=function(){SFX.tap();wClose()};
+$("wForm").addEventListener("submit",function(e){e.preventDefault();wSend($("wIn").value)});
+document.addEventListener("keydown",function(e){if(e.key==="Escape"&&!$("whimsi").hidden)wClose()});
+/* A report from an earlier visit is kept on this device, so a paid report survives a reload or a switch to a UPI app.
+   Offered on load and again whenever Back returns to the start screen. */
+function offerResume(){
   var sv=loadState();if(!sv||parseCode(location.hash))return;
   var band=BANDS.filter(function(b){return b.id===sv.band})[0];if(!band)return;
   $("resumeT").textContent=(sv.name&&sv.name!=="You"?"Welcome back, "+sv.name+".":"Welcome back.")+" Your last report is saved on this device.";
   $("resume").hidden=false;
   $("resumeBtn").onclick=function(){
     SFX.tap();omStop();
-    S.band=band;S.name=sv.name||"You";S.qs=sv.qs;S.ans=sv.ans;S.times=sv.times||[];S.used=sv.used||0;S.order=sv.order;S.pay=sv.pay;
+    S.band=band;setAge(band);S.name=sv.name||"You";S.qs=sv.qs;S.ans=sv.ans;S.times=sv.times||[];S.used=sv.used||0;S.order=sv.order;S.pay=sv.pay;S.myCode=sv.myCode||null;
     finish(true);
-    if(S.order||S.pay)checkPaid().then(function(){S.unlocked=true;ownMode()}).catch(function(){});
+    if(S.order||S.pay)checkPaid().then(function(j){S.unlocked=true;ownMode();takeCodeResult(j);saveState()}).catch(function(){});
   };
-})();
+}
+offerResume();
 
-$("again").onclick=function(){SFX.tap();if(S.preview){S.preview=false;ownMode();show("report");paint(S.D,false);return}try{location.hash=""}catch(e){}if(!OM.userOff&&!MUTE)omStart();show("start")};
+$("again").onclick=function(){SFX.tap();back()};
 $("copy").onclick=function(){
   var b=$("copy"),done=function(m){b.textContent=m;setTimeout(function(){b.textContent="Copy the message"},1800)};
   try{navigator.clipboard.writeText(shareText(S.D)).then(function(){done("Copied")},function(){done("Copy not allowed here")})}catch(e){done("Copy not allowed here")}

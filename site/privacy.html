@@ -3,6 +3,7 @@
 <head>
 <title>Privacy policy · Buddhi Score</title>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="/favicon.ico?v=2" sizes="48x48"><link rel="icon" href="/favicon.svg?v=2" type="image/svg+xml"><link rel="apple-touch-icon" href="/apple-touch-icon.png?v=2">
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Figtree:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
 :root{--bg:#F2F6F4;--surface:#fff;--ink:#10231F;--muted:#586C66;--line:#D3DDD9;--accent:#FFB020}
@@ -15,23 +16,30 @@ h2{font:700 20px "Bricolage Grotesque",sans-serif;margin:26px 0 6px}
 p,li{color:var(--ink)}.muted{color:var(--muted);font-size:14px}a{color:inherit}
 .box{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:16px 18px;margin-top:16px}
 footer{display:flex;flex-wrap:wrap;gap:14px;font-size:13px;color:var(--muted);border-top:1px solid var(--line);padding-top:16px;margin-top:36px}
+.top{display:flex;align-items:center;gap:12px}
+.back{display:inline-flex;align-items:center;gap:3px;border:1.5px solid var(--line);background:var(--surface);color:var(--ink);border-radius:99px;padding:5px 12px 5px 8px;font:600 13px Figtree,system-ui,sans-serif;text-decoration:none}
 </style>
 </head>
 <body>
 <main>
-<a class="brand" href="/">Buddhi<i>Score</i></a>
+<nav class="top"><a class="back" href="/" onclick="if(document.referrer.indexOf(location.origin)===0&&history.length>1){history.back();return false}"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg>Back</a><a class="brand" href="/">Buddhi<i>Score</i></a></nav>
 <h1>Privacy policy</h1>
-<p class="muted">Last updated: 11 November 2026</p>
+<p class="muted">Last updated: 13 November 2026</p>
 
 <p>This policy explains what information Buddhi Score handles when you use buddhiscore.in, and why. Buddhi Score is an independent service operated from India.</p>
-<div class="box"><b>In short:</b> you do not create an account, your test answers stay in your own browser, and we never see your card or UPI details.</div>
+<div class="box"><b>In short:</b> you do not create an account, your test answers stay in your own browser, and we never see your card or UPI details. If you chat with Whimsi, your messages and a summary of your scores, but not your name, are sent to our AI provider so it can reply.</div>
 <h2>Information that stays on your device</h2>
 <ul><li><b>First name and age group</b> that you type before the test.</li>
 <li><b>Your answers, timings and result</b>, so your report can be shown again if the page reloads.</li>
+<li><b>Your Whimsi chat</b>, so it is still there when you come back to your report.</li>
 <li><b>Your sound setting.</b></li></ul>
-<p>These are kept in your browser's local storage on your device. They are not sent to our server. You can remove them at any time by clearing this site's data in your browser.</p>
+<p>These are kept in your browser's local storage on your device. They are not sent to our server, except your Whimsi messages and score summary when you chat, as described below. You can remove them at any time by clearing this site's data in your browser.</p>
 <h2>Payments</h2>
 <p>When you buy the full report, the payment is handled by Razorpay. You enter your payment and contact details on Razorpay's checkout, not on our pages. We do not receive or store card numbers, UPI PINs or bank passwords. We can see the order ID, payment ID, amount, status and the contact details you gave Razorpay, in our Razorpay account, and we use them only to confirm payment, give support, process refunds and meet tax and legal record-keeping duties. Razorpay's own privacy policy applies to its processing.</p>
+<h2>Whimsi, the AI chat</h2>
+<p>Whimsi is an AI chat included with the full report. When you send Whimsi a message, our server passes it to Anthropic, the company that provides the AI model, together with the earlier messages in the chat and a summary of your report: age group, score, correct answers, time taken and skill results. Your name is not sent. Anthropic processes this to write the reply, under its own commercial terms and privacy policy.</p>
+<p>We do not keep the content of chats on our servers. We keep a count of messages for each order for up to 180 days, to apply the limit of 20 messages per report.</p>
+<p>Please do not share personal details such as your full name, school, address or phone number in the chat. Whimsi is told never to ask for them.</p>
 <h2>Shared links</h2>
 <p>If you choose to share your result, the link itself contains your first name, age group and scores. Anyone who has the link can see that summary, and it can be forwarded. Share a child's result only if you are comfortable with that.</p>
 <h2>Hosting and other services</h2>
@@ -39,7 +47,7 @@ footer{display:flex;flex-wrap:wrap;gap:14px;font-size:13px;color:var(--muted);bo
 <h2>What we do not do</h2>
 <ul><li>No advertising or tracking cookies.</li><li>No selling or renting of personal data.</li><li>No profiling of children.</li></ul>
 <h2>Children</h2>
-<p>Children under 18 should take the test with a parent or guardian's consent. We do not ask children for contact details, and a child's test data stays on the device as described above.</p>
+<p>Children under 18 should take the test with a parent or guardian's consent. We do not ask children for contact details, and a child's test data stays on the device as described above. For the 6 to 12 age groups, Whimsi uses simple, child-safe language, keeps to learning and puzzles, and reminds children to keep a grown-up nearby while they chat.</p>
 <h2>Your choices</h2>
 <p>You can clear your saved report from your browser at any time. To ask about payment records we hold, to request correction or deletion where the law allows, or to raise a complaint, write to us at <a href="mailto:mailatsales@gmail.com">mailatsales@gmail.com</a>. We aim to reply within 7 working days.</p>
 <h2>Changes</h2>

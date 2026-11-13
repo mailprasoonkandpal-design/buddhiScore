@@ -67,6 +67,23 @@ These pages are drafts written to match how the site works. Have a lawyer or CA 
 3. Replace the two secrets in Cloudflare with the live values and upload `site` once more.
 4. Make one real ₹49 payment yourself, confirm the report opens, then refund it from the Razorpay dashboard.
 
+## Whimsi, the AI chat
+
+Every paid report includes an AI-powered chat about the report: up to 20 messages with Whimsi, an AI thinking buddy powered by Claude Haiku 5.5. Whimsi explains the person's results and gives practice puzzles with hints, and it uses simpler, child-safe language for ages 6 to 12. Its instructions are in `whimsi.js`.
+
+1. In the Claude Console (platform.claude.com), create an API key and add some billing credit.
+2. In the Worker's **Settings > Variables and Secrets**, add a **Secret** named `ANTHROPIC_API_KEY` with that key.
+3. Run `npm install` once, then deploy with `npx wrangler deploy`. The deploy bundles the Anthropic SDK and creates the `WHIMSI` KV namespace that counts messages.
+
+Costs and limits:
+- Roughly $0.001 per message, so a full 20-message chat costs about 2 US cents.
+- Chats are not stored on the server. Only a message count per order is kept, for 180 days.
+- The free Workers plan allows 1,000 KV writes a day, about 1,000 Whimsi messages a day. Move to Workers Paid before you outgrow it.
+
+## Test on your computer
+
+Run `npm install`, then `npx wrangler dev -c wrangler.local.jsonc` and open http://127.0.0.1:8787. In this test mode payments are fake (a "pretend to pay" box). Whimsi sends canned replies unless `.dev.vars` has a real `ANTHROPIC_API_KEY`, in which case it talks to Claude. Never deploy with `wrangler.local.jsonc`.
+
 ## Good to know
 
 - **No database.** Reports are saved in the visitor's own browser. A buyer who clears their browser data or changes phone loses the report. If they write to you with a payment ID, check it in Razorpay and refund or ask them to retake.

@@ -27,14 +27,23 @@ function sameString(a, b) {
 
 async function createOrder(env) {
   const amount = parseInt(env.PRICE_PAISE || "4900", 10);
+  // Razorpay's minimum order is 100 paise (₹1).
+  if (!(amount >= 100)) return json({ ok: false, error: "The price is not set up correctly." }, 500);
   const r = await fetch("https://api.razorpay.com/v1/orders", {
     method: "POST",
     headers: { Authorization: auth(env), "Content-Type": "application/json" },
     body: JSON.stringify({ amount, currency: "INR", receipt: "bs_" + Date.now().toString(36), notes: { product: "full_report" } }),
   });
   const j = await r.json().catch(() => ({}));
-  if (!r.ok || !j.id) return json({ ok: false, error: "Could not start the payment. Please try again." }, 502);
-  return json({ ok: true, order_id: j.id, amount: j.amount, key_id: env.RAZORPAY_KEY_ID });
+  if (r.status === 401) {
+    console.error("razorpay rejected the API keys");
+    return json({ ok: false, error: "Payments are not set up correctly." }, 401);
+  }
+  if (!r.ok || !j.id) {
+    console.error("razorpay order failed", r.status, j.error && j.error.code);
+    return json({ ok: false, error: "Could not start the payment. Please try again." }, 500);
+  }
+  return json({ ok: true, order_id: j.id, amount: j.amount, currency: j.currency, key_id: env.RAZORPAY_KEY_ID });
 }
 
 // Returns null when the order is paid, or [error message, HTTP status] when it is not.
@@ -43,7 +52,8 @@ async function unpaid(b, env) {
   if (!/^order_[A-Za-z0-9]{6,40}$/.test(orderId || "")) return ["Invalid order.", 400];
 
   // Normal path: Razorpay's signature proves this payment belongs to this order.
-  if (payId && sig) {
+  if (payId || sig) {
+    if (!payId || !sig) return ["Missing payment details.", 400];
     if (!/^pay_[A-Za-z0-9]{6,40}$/.test(payId)) return ["Invalid payment.", 400];
     const expected = await hmacHex(env.RAZORPAY_KEY_SECRET, orderId + "|" + payId);
     return sameString(expected, String(sig)) ? null : ["Payment could not be verified.", 400];

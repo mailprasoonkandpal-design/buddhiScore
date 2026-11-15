@@ -8,11 +8,14 @@
 <meta property="og:title" content="How good is your brain? The 10-minute Buddhi Score test">
 <meta property="og:description" content="A 10-minute thinking test for all ages, with a graphical report.">
 <meta property="og:url" content="https://buddhiscore.in/">
-<meta name="theme-color" content="#FFB020">
-<link rel="icon" href="/favicon.ico?v=2" sizes="48x48">
-<link rel="icon" href="/favicon.svg?v=2" type="image/svg+xml">
-<link rel="apple-touch-icon" href="/apple-touch-icon.png?v=2">
-<meta property="og:image" content="https://buddhiscore.in/og.png">
+<meta name="theme-color" content="#1E40AF">
+<link rel="icon" href="/favicon.ico?v=4" sizes="48x48">
+<link rel="icon" href="/favicon.svg?v=4" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png?v=4">
+<link rel="manifest" href="/site.webmanifest?v=4">
+<meta property="og:image" content="https://buddhiscore.in/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
 <meta property="og:type" content="website">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -20,9 +23,11 @@
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
 /* Layout idea: a measuring instrument. One narrow column, the bell curve is the recurring gauge, five skill colours carry the pictures. */
+/* Colours follow buddhiscore-brand-kit: navy ink, sky accent, and the sky-to-deep-blue gradient of the logo mark on buttons. */
 :root{
-  --bg:#F2F6F4; --surface:#FFFFFF; --ink:#10231F; --muted:#586C66; --line:#D3DDD9;
-  --accent:#FFB020; --accent-ink:#10231F; --teal:#0B7A6B; --soft:#E4EFEB;
+  --bg:#F3F6FC; --surface:#FFFFFF; --ink:#0F2257; --muted:#55617A; --line:#D5DCEA;
+  --accent:#0EA5E9; --accent-ink:#0B1A41; --teal:#1E5BC6; --soft:#E6EDF9;
+  --btn:linear-gradient(135deg,#0284C7,#1E40AF); --btn-ink:#FFFFFF;
   --good:#1B8A4B; --bad:#C2412D;
   --cP:#6C5CE7; --cN:#0B8A78; --cW:#E8590C; --cL:#1C7ED6; --cM:#D6336C;
   --display:"Bricolage Grotesque","Trebuchet MS",system-ui,sans-serif;
@@ -30,14 +35,14 @@
 }
 @media (prefers-color-scheme: dark){
   :root:not([data-theme="light"]){
-    --bg:#0C1513; --surface:#14211E; --ink:#E9F1EE; --muted:#94A9A2; --line:#273B36;
-    --accent:#FFB020; --accent-ink:#10231F; --teal:#45C9B3; --soft:#1B2D29;
+    --bg:#0A1430; --surface:#111D3D; --ink:#E8EEFB; --muted:#9AA8C7; --line:#24335A;
+    --accent:#38BDF8; --accent-ink:#0A1430; --teal:#38BDF8; --soft:#18264A;
     --good:#4CC983; --bad:#F0806E; color-scheme:dark;
   }
 }
 :root[data-theme="dark"]{
-  --bg:#0C1513; --surface:#14211E; --ink:#E9F1EE; --muted:#94A9A2; --line:#273B36;
-  --accent:#FFB020; --accent-ink:#10231F; --teal:#45C9B3; --soft:#1B2D29;
+  --bg:#0A1430; --surface:#111D3D; --ink:#E8EEFB; --muted:#9AA8C7; --line:#24335A;
+  --accent:#38BDF8; --accent-ink:#0A1430; --teal:#38BDF8; --soft:#18264A;
   --good:#4CC983; --bad:#F0806E; color-scheme:dark;
 }
 *{box-sizing:border-box}
@@ -45,12 +50,14 @@ html,body{margin:0}
 body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.5;-webkit-font-smoothing:antialiased;overflow-x:hidden}
 .wrap{max-width:720px;margin:0 auto;padding:20px 18px 56px;display:flex;flex-direction:column;gap:22px}
 header.bar{display:flex;justify-content:space-between;align-items:center;gap:12px}
-.brand{display:flex;align-items:center;gap:9px;font-family:var(--display);font-weight:800;font-size:20px;letter-spacing:-.02em}
-.brand i{font-style:normal;background:var(--accent);color:var(--accent-ink);padding:1px 7px;border-radius:6px;margin-left:4px}
+/* Logo from the brand kit: the full logo, or just the mark when space is short. */
+.brand{display:flex;align-items:center;flex:none}
+.brand img{display:block;height:32px;width:auto}
+.brand .logo-mark{display:none}
 .mute,.back{border:1.5px solid var(--line);background:var(--surface);color:var(--ink);border-radius:99px;padding:6px 12px;font:600 13px var(--body);cursor:pointer}
 .hl{display:flex;align-items:center;gap:10px;min-width:0}
 .back{display:inline-flex;align-items:center;gap:3px;padding-left:8px;flex:none}
-@media (max-width:420px){.back:not([hidden])+.brand span{display:none}}
+@media (max-width:420px){.back:not([hidden])+.brand .logo-full{display:none}.back:not([hidden])+.brand .logo-mark{display:block}}
 .mute[aria-pressed=true]{color:var(--muted);text-decoration:line-through}
 h1{font-family:var(--display);font-weight:800;font-size:clamp(34px,8vw,54px);line-height:1.02;letter-spacing:-.035em;margin:0;text-wrap:balance}
 h2{font-family:var(--display);font-weight:700;font-size:22px;letter-spacing:-.02em;margin:0;text-wrap:balance}
@@ -73,16 +80,16 @@ p{margin:0}
 .gauge text{fill:var(--muted);font:500 11px var(--body);font-variant-numeric:tabular-nums}
 .gauge .mark{stroke:var(--ink);stroke-width:2.5}
 .gauge .marklab{fill:var(--ink);font:800 15px var(--display)}
-.stage{background:#0A1412;color:#E9F1EE;border-radius:22px;padding:16px 14px 20px;display:flex;flex-direction:column;align-items:center;gap:4px;overflow:hidden;color-scheme:dark}
+.stage{background:#0A1430;color:#E8EEFB;border-radius:22px;padding:16px 14px 20px;display:flex;flex-direction:column;align-items:center;gap:4px;overflow:hidden;color-scheme:dark}
 .stop{display:flex;justify-content:space-between;align-items:center;gap:10px;width:100%}
-.ombtn{flex:none;border:1.5px solid #FFB020;background:transparent;color:#FFB020;border-radius:99px;padding:6px 13px;font:700 13px var(--body);cursor:pointer}
-.ombtn[aria-pressed=true]{background:#FFB020;color:#10231F}
-.stage .eyebrow{font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#9FB3AD}
+.ombtn{flex:none;border:1.5px solid #38BDF8;background:transparent;color:#38BDF8;border-radius:99px;padding:6px 13px;font:700 13px var(--body);cursor:pointer}
+.ombtn[aria-pressed=true]{background:#38BDF8;color:#0A1430}
+.stage .eyebrow{font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#9AA8C7}
 .stage canvas{width:100%;max-width:470px;aspect-ratio:5/4;display:block}
 .b3cap{min-height:74px;display:flex;flex-direction:column;align-items:center;gap:4px;text-align:center}
 .b3t{display:inline-flex;align-items:center;gap:8px;flex-wrap:wrap;justify-content:center;font-size:19px}
-.b3t b{font-family:var(--display);font-weight:800}.b3t i{font-style:normal;color:#9FB3AD;font-size:15px}
-.b3cap small{color:#9FB3AD;font-size:13.5px;max-width:42ch}
+.b3t b{font-family:var(--display);font-weight:800}.b3t i{font-style:normal;color:#9AA8C7;font-size:15px}
+.b3cap small{color:#9AA8C7;font-size:13.5px;max-width:42ch}
 .skill .ico{outline:3px solid transparent;outline-offset:3px}
 .skill.act .ico{outline-color:var(--ink)}
 .skills{display:grid;grid-template-columns:repeat(5,1fr);gap:8px}
@@ -97,7 +104,7 @@ input[type=text]:focus-visible,button:focus-visible{outline:3px solid var(--teal
 .ages{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
 .ages button{padding:12px 6px;border-radius:12px;border:1.5px solid var(--line);background:var(--bg);color:var(--ink);font:600 15px var(--body);cursor:pointer;font-variant-numeric:tabular-nums}
 .ages button[aria-pressed=true]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
-.btn{appearance:none;border:0;border-radius:14px;padding:15px 20px;font:700 17px var(--body);cursor:pointer;background:var(--accent);color:var(--accent-ink);box-shadow:0 3px 0 rgba(0,0,0,.2)}
+.btn{appearance:none;border:0;border-radius:14px;padding:15px 20px;font:700 17px var(--body);cursor:pointer;background:var(--btn);color:var(--btn-ink);box-shadow:0 3px 0 rgba(15,34,87,.3)}
 .btn:active{transform:translateY(2px);box-shadow:0 1px 0 rgba(0,0,0,.2)}
 .btn.bigbtn{display:flex;flex-direction:column;align-items:flex-start;gap:2px;text-align:left;padding:16px 22px;width:100%}
 .btn.bigbtn b{font-family:var(--display);font-size:22px;line-height:1.15}
@@ -120,6 +127,14 @@ a.btn{text-decoration:none;display:inline-block;text-align:center}
 .note a,.foot a{color:inherit}
 .foot{display:flex;flex-wrap:wrap;gap:14px;font-size:13px;color:var(--muted);border-top:1px solid var(--line);padding-top:16px}
 .foot span{margin-left:auto}
+.igf{display:inline-flex;align-items:center;gap:5px}
+.challenge{display:flex;flex-direction:column;align-items:stretch;gap:6px;text-align:center}
+.btn.chal{display:flex;align-items:center;justify-content:center;gap:10px;font-size:18px;padding:16px 20px}
+.btn.chal svg{width:22px;height:22px}
+.btn.ig{display:inline-flex;align-items:center;gap:9px;background:linear-gradient(45deg,#F58529,#DD2A7B 45%,#8134AF 75%,#515BD4);color:#fff}
+.btn.ig svg{width:20px;height:20px}
+.igrow{display:flex;align-items:center;gap:10px 14px;flex-wrap:wrap;border-top:1px solid var(--line);padding-top:16px}
+.igrow p{flex:1 1 180px;font-size:14px;color:var(--muted)}
 /* quiz */
 .qtop{display:flex;justify-content:space-between;align-items:center;font-size:14px;font-weight:600;gap:10px}
 .pill{display:inline-flex;align-items:center;gap:7px;background:var(--soft);padding:4px 11px 4px 4px;border-radius:99px;font-size:13px;font-weight:700}
@@ -308,17 +323,18 @@ a.btn{text-decoration:none;display:inline-block;text-align:center}
 .codebox .btn{padding:10px 16px;font-size:15px}
 .pdfrow{display:flex;flex-direction:column;gap:6px;align-items:flex-start}
 .prem .pdfMsg{color:inherit;opacity:.8}
-.pdfdoc{position:absolute;left:-30000px;top:0;width:760px;--bg:#FFFFFF;--surface:#FFFFFF;--ink:#10231F;--muted:#4F625C;--line:#D3DDD9;--soft:#EEF3F1;--teal:#0B7A6B;--good:#1B8A4B;--bad:#C2412D;color-scheme:light;color:#10231F;background:#fff;font-family:var(--body)}
+.pdfdoc{position:absolute;left:-30000px;top:0;width:760px;--bg:#FFFFFF;--surface:#FFFFFF;--ink:#0F2257;--muted:#4D5872;--line:#D5DCEA;--soft:#EEF2FA;--teal:#1E5BC6;--accent:#0EA5E9;--accent-ink:#0B1A41;--good:#1B8A4B;--bad:#C2412D;color-scheme:light;color:#0F2257;background:#fff;font-family:var(--body)}
 .pdfdoc *{animation:none!important;transition:none!important}
 .pmeas{width:760px;padding:0 44px;box-sizing:border-box;display:flex;flex-direction:column;gap:12px}
 .pdfdoc .sheet{width:760px;height:1075px;box-sizing:border-box;padding:40px 44px 72px;background:#fff;display:flex;flex-direction:column;gap:12px;overflow:hidden;position:relative}
 .pdfdoc .sheet > *{flex-shrink:0}
 .pdfdoc .split{border:0!important;background:none!important;padding:0!important;box-shadow:none!important}
 .pdfdoc summary,.pdfdoc .noprint{display:none!important}
-.pdfdoc .pfoot{position:absolute;left:44px;right:44px;bottom:16px;display:flex;justify-content:space-between;gap:12px;font-size:11px;color:#4F625C}
-.pdfdoc .phead{display:flex;justify-content:space-between;align-items:flex-end;gap:12px;border-bottom:2px solid #10231F;padding-bottom:10px}
-.pdfdoc .phead > div:last-child{display:flex;flex-direction:column;align-items:flex-end;font-size:13px;color:#4F625C;text-align:right}
-.pdfdoc .phead > div:last-child b{font-family:var(--display);font-size:18px;color:#10231F}
+.pdfdoc .pfoot{position:absolute;left:44px;right:44px;bottom:16px;display:flex;justify-content:space-between;gap:12px;font-size:11px;color:#4D5872}
+.pdfdoc .phead{display:flex;justify-content:space-between;align-items:flex-end;gap:12px;border-bottom:2px solid #0F2257;padding-bottom:10px}
+.pdfdoc .phead > div:last-child{display:flex;flex-direction:column;align-items:flex-end;font-size:13px;color:#4D5872;text-align:right}
+.pdfdoc .phead > div:last-child b{font-family:var(--display);font-size:18px;color:#0F2257}
+.pdfdoc .plogo{display:block;height:36px;width:auto}
 @media (max-width:520px){.tiles4{grid-template-columns:repeat(2,minmax(0,1fr))}.pqo svg{width:28px;height:28px}}
 @media (max-width:520px){.fit,.pg{grid-template-columns:1fr}.habits{grid-template-columns:1fr}.stand{grid-template-columns:1fr}.dots{max-width:200px}.hero{grid-template-columns:1fr}.hero svg{max-width:220px;order:-1}.plans{grid-template-columns:1fr}.bar{grid-template-columns:24px 62px 1fr 40px}.skills{gap:4px}.ico{width:46px;height:46px}}
 
@@ -450,7 +466,7 @@ a.btn{text-decoration:none;display:inline-block;text-align:center}
 <div class="wrap">
   <header class="bar">
     <div class="hl"><button type="button" class="back" id="back" hidden><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg>Back</button>
-    <div class="brand"><svg viewBox="0 0 512 512" width="30" height="30" aria-hidden="true" style="flex:none"><rect width="512" height="512" rx="116" fill="#10231F"/><g fill="none" stroke="#FFB020" stroke-width="62" stroke-linecap="round" stroke-linejoin="round"><path d="M150 158 V370"/><path d="M150 158 H220 a53 53 0 0 1 0 106 H150"/><path d="M150 264 H240 a53 53 0 0 1 0 106 H150"/></g><path d="M330 156 a50 50 0 0 0 100 0" fill="none" stroke="#fff" stroke-width="26" stroke-linecap="round"/><circle cx="380" cy="112" r="24" fill="#fff"/></svg><span>Buddhi<i>Score</i></span></div></div>
+    <div class="brand"><picture class="logo-full"><source srcset="/logo-dark.png" media="(prefers-color-scheme: dark)"><img src="/logo-light.png" alt="Buddhi Score" width="178" height="32"></picture><img class="logo-mark" src="/favicon.svg" alt="Buddhi Score" width="32" height="32"></div></div>
     <button type="button" class="mute" id="mute" aria-pressed="false">Sound on</button>
   </header>
 
@@ -553,6 +569,10 @@ a.btn{text-decoration:none;display:inline-block;text-align:center}
         <div><span class="band" id="rBand"></span><span class="meta" id="rRange"></span></div>
       </div>
     </div>
+    <div class="challenge noprint" id="challengeRow">
+      <button type="button" class="btn chal" id="chalBtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.6 13.5l6.8 4M15.4 6.5l-6.8 4"/></svg>Challenge a friend</button>
+      <p class="note">Send your score and dare them to beat it.</p>
+    </div>
     <div class="card">
       <h2>Where you stand</h2>
       <div class="gauge" id="rGauge"></div>
@@ -614,15 +634,20 @@ a.btn{text-decoration:none;display:inline-block;text-align:center}
     </div>
     <div class="full" id="fullCard" hidden></div>
     <div class="card" id="shareCard">
-      <h2>Share your result</h2>
-      <p>Challenge a friend to beat your score.</p>
+      <h2>Challenge a friend</h2>
+      <p>Send your score and see who comes out on top.</p>
       <div class="row">
+        <button type="button" class="btn" id="nativeShare" hidden>Share with friends</button>
         <a class="btn wa" id="waBtn" href="https://wa.me/" target="_blank" rel="noopener">Share on WhatsApp</a>
         <a class="btn dark" id="smsBtn" href="sms:">Send as a text message</a>
         <button type="button" class="btn ghost" id="copy">Copy the message</button>
       </div>
       <p class="note" id="shareNote"></p>
       <div><button type="button" class="btn ghost" id="previewBtn">See what your friend will see</button></div>
+      <div class="igrow">
+        <a class="btn ig" href="https://www.instagram.com/bhuddiscore/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.4" cy="6.6" r="1.2" fill="currentColor" stroke="none"/></svg>Follow @bhuddiscore</a>
+        <p>Brain teasers, tips and new challenges on Instagram.</p>
+      </div>
     </div>
     <div class="row">
       <button class="btn ghost" id="again">Take it again with new questions</button>
@@ -631,6 +656,7 @@ a.btn{text-decoration:none;display:inline-block;text-align:center}
   </section>
   <footer class="foot">
     <a href="/terms.html">Terms</a><a href="/privacy.html">Privacy</a><a href="/refund.html">Refunds</a><a href="/contact.html">Contact</a>
+    <a class="igf" href="https://www.instagram.com/bhuddiscore/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.4" cy="6.6" r="1.2" fill="currentColor" stroke="none"/></svg>Instagram</a>
     <span>© 2026 Buddhi Score</span>
   </footer>
 </div>
@@ -646,10 +672,10 @@ a.btn{text-decoration:none;display:inline-block;text-align:center}
   </div>
 </div>
 
-<button type="button" class="wbtn" id="wBtn" hidden aria-haspopup="dialog"><span class="wav" aria-hidden="true"><svg viewBox="0 0 40 40" width="32" height="32"><circle cx="20" cy="21" r="17" fill="#6C5CE7"/><circle cx="14.5" cy="19" r="2.5" fill="#fff"/><circle cx="25.5" cy="19" r="2.5" fill="#fff"/><path d="M14 25.5q6 5 12 0" stroke="#fff" stroke-width="2.5" fill="none" stroke-linecap="round"/><path d="M33 1.5l1.7 3.8 3.8 1.7-3.8 1.7L33 12.5l-1.7-3.8L27.5 7l3.8-1.7z" fill="#FFB020"/></svg></span>Ask Whimsi<em class="aitag">AI</em></button>
+<button type="button" class="wbtn" id="wBtn" hidden aria-haspopup="dialog"><span class="wav" aria-hidden="true"><svg viewBox="0 0 40 40" width="32" height="32"><circle cx="20" cy="21" r="17" fill="#6C5CE7"/><circle cx="14.5" cy="19" r="2.5" fill="#fff"/><circle cx="25.5" cy="19" r="2.5" fill="#fff"/><path d="M14 25.5q6 5 12 0" stroke="#fff" stroke-width="2.5" fill="none" stroke-linecap="round"/><path d="M33 1.5l1.7 3.8 3.8 1.7-3.8 1.7L33 12.5l-1.7-3.8L27.5 7l3.8-1.7z" fill="#7DD3FC"/></svg></span>Ask Whimsi<em class="aitag">AI</em></button>
 <div class="wpanel" id="whimsi" role="dialog" aria-labelledby="wTitle" hidden>
   <div class="whead">
-    <span class="wav" aria-hidden="true"><svg viewBox="0 0 40 40" width="38" height="38"><circle cx="20" cy="21" r="17" fill="#6C5CE7"/><circle cx="14.5" cy="19" r="2.5" fill="#fff"/><circle cx="25.5" cy="19" r="2.5" fill="#fff"/><path d="M14 25.5q6 5 12 0" stroke="#fff" stroke-width="2.5" fill="none" stroke-linecap="round"/><path d="M33 1.5l1.7 3.8 3.8 1.7-3.8 1.7L33 12.5l-1.7-3.8L27.5 7l3.8-1.7z" fill="#FFB020"/></svg></span>
+    <span class="wav" aria-hidden="true"><svg viewBox="0 0 40 40" width="38" height="38"><circle cx="20" cy="21" r="17" fill="#6C5CE7"/><circle cx="14.5" cy="19" r="2.5" fill="#fff"/><circle cx="25.5" cy="19" r="2.5" fill="#fff"/><path d="M14 25.5q6 5 12 0" stroke="#fff" stroke-width="2.5" fill="none" stroke-linecap="round"/><path d="M33 1.5l1.7 3.8 3.8 1.7-3.8 1.7L33 12.5l-1.7-3.8L27.5 7l3.8-1.7z" fill="#7DD3FC"/></svg></span>
     <div><b id="wTitle">Whimsi</b><small id="wLeft">AI-powered · 20 messages per report</small></div>
     <button type="button" class="wx" id="wClose" aria-label="Close chat"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
   </div>
@@ -991,7 +1017,7 @@ function confetti(){
   if(CALM)return;
   var cv=document.createElement("canvas");cv.id="confetti";document.body.appendChild(cv);
   var ctx=cv.getContext("2d"),w=cv.width=innerWidth,h=cv.height=innerHeight;
-  var cols=["#6C5CE7","#0B8A78","#E8590C","#1C7ED6","#D6336C","#FFB020"],ps=[],i;
+  var cols=["#6C5CE7","#0B8A78","#E8590C","#1C7ED6","#D6336C","#0EA5E9"],ps=[],i;
   for(i=0;i<(AGE==="kids"?220:110);i++)ps.push({x:w/2+(Math.random()-.5)*120,y:h*.3,vx:(Math.random()-.5)*11,vy:-Math.random()*11-3,s:5+Math.random()*7,c:cols[i%6],r:Math.random()*6,vr:(Math.random()-.5)*.4});
   var t0=performance.now();
   (function step(t){
@@ -1521,6 +1547,22 @@ function topSkill(val){var keys=Object.keys(DOMS),b=keys[0];keys.forEach(functio
 function shareText(D){var link=siteLink(mkCode(D)),who=D.name==="You"?"I":D.name;
   return who+" scored "+D.iq+" on Buddhi Score ("+bandName(D.iq)+"). Strongest skill: "+DOMS[topSkill(D.val)]+". Can you beat it?"+(link?" See the report and take the 10-minute test: "+link:"")}
 
+/* Challenge a friend: the phone's own share menu (WhatsApp, Instagram, Telegram and more) where the browser has one.
+   Without it, or if it fails for any reason other than the person cancelling, it leads to the share card's WhatsApp, text and copy options. */
+function toShareCard(){
+  var c=$("shareCard");c.scrollIntoView({behavior:CALM?"auto":"smooth",block:"center"});
+  c.classList.add("hilite");setTimeout(function(){c.classList.remove("hilite")},1800);
+}
+function nativeShare(){
+  var D=S.D,link=siteLink(mkCode(D)),who=D.name==="You"?"I":D.name;
+  if(!navigator.share||!link)return toShareCard();
+  navigator.share({title:"Buddhi Score challenge",url:link,
+    text:who+" scored "+D.iq+" on Buddhi Score. Strongest skill: "+DOMS[topSkill(D.val)]+". Think you can beat it? Take the 10-minute brain test:"})
+    .catch(function(e){if(!e||e.name!=="AbortError")toShareCard()});
+}
+$("nativeShare").hidden=!navigator.share;
+$("nativeShare").onclick=$("chalBtn").onclick=function(){SFX.tap();nativeShare()};
+
 var R=null;
 /* paints every chart that depends only on the summary numbers, so it serves both your own report and a shared one */
 function paint(D,shared){
@@ -1564,7 +1606,7 @@ function paint(D,shared){
   })});
 }
 function ownMode(){
-  $("sharedBar").hidden=true;$("glanceCard").hidden=false;$("shareCard").hidden=false;
+  $("sharedBar").hidden=true;$("glanceCard").hidden=false;$("shareCard").hidden=false;$("challengeRow").hidden=false;
   $("lockCard").hidden=!!S.unlocked;$("fullCard").hidden=!S.unlocked;$("lockWhy").hidden=true;
   $("again").textContent="Take it again with new questions";
   var txt=encodeURIComponent(shareText(S.D));
@@ -1574,7 +1616,7 @@ function ownMode(){
 }
 function showShared(D,preview){
   S.preview=!!preview;setAge(D.band);
-  $("sharedBar").hidden=false;$("glanceCard").hidden=true;$("shareCard").hidden=true;$("lockCard").hidden=true;$("fullCard").hidden=true;
+  $("sharedBar").hidden=false;$("glanceCard").hidden=true;$("shareCard").hidden=true;$("challengeRow").hidden=true;$("lockCard").hidden=true;$("fullCard").hidden=true;
   $("sharedT").textContent=(D.name==="Friend"||D.name==="You"?"A friend":D.name)+" scored "+D.iq+". Can you beat it?";
   $("sharedGo").textContent=preview?"Back to my report":"Take the test yourself";
   $("again").textContent=preview?"Back to my report":"Take the test yourself";
@@ -1710,8 +1752,8 @@ function buildPDF(){
   [].forEach.call(document.querySelectorAll("#report input[type=checkbox]"),function(c){if(c.checked)c.setAttribute("checked","");else c.removeAttribute("checked")});
   var meas=document.createElement("div");meas.className="pmeas";doc.appendChild(meas);
   var head=document.createElement("div");head.className="phead";
-  var brand=document.querySelector("header.bar .brand");
-  head.innerHTML=(brand?brand.outerHTML:"<b>Buddhi Score</b>")+'<div><b>Brain report and practice plan</b><span>'+esc((S.D.name==="You"?"":S.D.name+" · ")+"Age "+S.D.band.label+" · "+S.D.date)+'</span></div>';
+  /* The PDF page is always white, so it always uses the logo made for light backgrounds. */
+  head.innerHTML='<img class="plogo" src="/logo-light.png" alt="Buddhi Score">'+'<div><b>Brain report and practice plan</b><span>'+esc((S.D.name==="You"?"":S.D.name+" · ")+"Age "+S.D.band.label+" · "+S.D.date)+'</span></div>';
   meas.appendChild(head);
   var src=[].filter.call($("report").children,function(el){return el.classList.contains("card")&&!el.hidden&&["sharedBar","shareCard","lockCard"].indexOf(el.id)<0});
   src.concat([].filter.call($("fullCard").children,function(el){return !el.hidden&&!el.classList.contains("noprint")})).forEach(function(el){meas.appendChild(cleanClone(el.cloneNode(true)))});
@@ -1800,15 +1842,21 @@ function startPay(){
   Promise.all([api("/api/create-order",{code:S.coupon||""}),loadCheckout()]).then(function(r){
     var o=r[0];S.order=o.order_id;S.pay=null;saveState();
     $("payModal").hidden=true;
-    var rz=new window.Razorpay({key:o.key_id,order_id:o.order_id,amount:o.amount,currency:"INR",name:"Buddhi Score",description:"Full report",
-      prefill:{name:S.name==="You"?"":S.name},theme:{color:"#FFB020"},
+    /* Razorpay keeps its window open after a failed attempt so the buyer can retry, so the reason is shown once they close it. */
+    var failed=null;
+    var rz=new window.Razorpay({key:o.key_id,order_id:o.order_id,amount:o.amount,currency:o.currency||"INR",name:"Buddhi Score",description:"Full report",
+      prefill:{name:S.name==="You"?"":S.name},theme:{color:"#1E40AF"},
       handler:function(resp){
+        failed=null;
         S.pay={razorpay_order_id:resp.razorpay_order_id,razorpay_payment_id:resp.razorpay_payment_id,razorpay_signature:resp.razorpay_signature};saveState();
         payMsg("Confirming your payment","Please keep this page open.",false);
         api("/api/verify",S.pay).then(unlockNow).catch(function(){PAY.busy=false;
           payMsg("We could not confirm your payment yet","If money has left your account, your report is safe on this device. Wait a minute and tap Try again. If it still fails, write to us with payment ID "+resp.razorpay_payment_id+".",true)});
       },
-      modal:{ondismiss:function(){PAY.busy=false}}});
+      modal:{ondismiss:function(){PAY.busy=false;
+        if(failed)payMsg("Your payment did not go through",failed+" Nothing was unlocked. Tap Try again to pay with the same or another method. If money left your account for a failed payment, your bank returns it automatically.",true)}}});
+    rz.on("payment.failed",function(resp){var e=(resp&&resp.error)||{};
+      failed=(e.description||"The payment was declined.")+(e.metadata&&e.metadata.payment_id?" (Payment ID "+e.metadata.payment_id+".)":"")});
     rz.open();
   }).catch(function(e){PAY.busy=false;payMsg("The payment could not start",e.message+" No money has been taken.",true)});
 }

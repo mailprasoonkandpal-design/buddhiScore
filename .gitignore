@@ -1,3 +1,6 @@
 .dev.vars
 .wrangler/
 node_modules/
+# Original brand kit files. The site uses web-sized copies in site/.
+buddhiscore-brand-kit/
+buddhiscore-brand-kit.zip
